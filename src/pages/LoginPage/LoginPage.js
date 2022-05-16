@@ -8,15 +8,16 @@ import { goToHomePage, goToSignUpPage } from "../../router/coordinator";
 export default function LoginPage() {
   let navigate = useNavigate();
 
-  const [form, InputChange, clear] = useForm({
+  const { form, InputChange, clear } = useForm({
     email: "",
     password: ""
   })
 
-  const body = form
+  // const body = form
 
-  const login = () => {
-    // event.preventDefault();
+  const login = (event) => {
+    event.preventDefault();
+    const body = form
 
     axios
       .post('https://us-central1-missao-newton.cloudfunctions.net/rappi4A/login', body)
