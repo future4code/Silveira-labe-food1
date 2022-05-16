@@ -18,13 +18,13 @@ function Router() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<LoginPage />} />
-                    <Route path="/signup" element={<SignupPage/>} />
-                    <Route path="/registerpage" element={<RegisterPage />} />
-                    <Route path="/profilepage" element={<ProfilePage />} />
-                    <Route path="/homepage" element={<HomePage/>} />
-                    <Route path="/detailspage/:id" element={<DetailsPage />} />
-                    <Route path="/editpage" element={<EditPage />} />
-                    <Route path="/cartpage" element={<CartPage />} />
+                    <Route path="signup" element={<SignupPage/>} />
+                    <Route path="registerpage" element={<RegisterPage />} />
+                    <Route path="profilepage" element={<ProfilePage />} />
+                    <Route path="homepage" element={<HomePage/>} />
+                    <Route path="detailspage/:id" element={<DetailsPage />} />
+                    <Route path="editpage" element={<EditPage />} />
+                    <Route path="cartpage" element={<CartPage />} />
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
             </BrowserRouter>

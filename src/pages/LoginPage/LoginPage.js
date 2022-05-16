@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import { goToHomePage, goToSignUpPage } from "../../router/coordinator";
 
+
 export default function LoginPage() {
   let navigate = useNavigate();
 
@@ -86,6 +87,7 @@ export default function LoginPage() {
       </form>
 
       <button onClick={() => goToSignUpPage(navigate)}>Sign Up</button>
+
     </div>
   )
 }
