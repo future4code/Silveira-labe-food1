@@ -1,0 +1,5 @@
+export const colorsOne = "#E86E5A"
+export const colorsTwo = "#D1D1D6"
+export const colorsTree = "#FF9500"
+export const colorsFour = "#FF3B30"
+export const colorFive = "#007AFF"
