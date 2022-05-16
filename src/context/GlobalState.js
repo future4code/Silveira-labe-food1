@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { BASE_URL } from "../constants/urls";
+import { useNavigate } from 'react-router-dom';
+import GlobalStateContext from './GlobalStateContext'
 
 const GlobalState = (props) => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const token = window.localStorage.getItem("token");
     const headers = {
         headers: {
@@ -67,7 +69,7 @@ const GlobalState = (props) => {
     const states = { address, profile, restaurants, restaurantDetail }
     const setters = { setAddress, setProfile, setRestaurants, setRestaurantDetail }
     const requests = { getAddress, getProfile, getRestaurants, getRestaurantDetail }
-    const values = { navigate, token, headers }
+    const values = { token, headers }
 
     return (
         <GlobalStateContext.Provider value={{ states, setters, requests, values }}>
