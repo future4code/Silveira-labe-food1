@@ -14,8 +14,8 @@ export default function LoginPage() {
 
   const body = form
 
-  const login = (event) => {
-    event.preventDefault();
+  const login = () => {
+    // event.preventDefault();
 
     axios
       .post('https://us-central1-missao-newton.cloudfunctions.net/rappi4A/login', body)
@@ -40,7 +40,6 @@ export default function LoginPage() {
   }
 
   // console.log(body)
-
 
   // const login = (e) => {
   //   e.preventDefault();
