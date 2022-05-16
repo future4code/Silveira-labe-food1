@@ -1,13 +1,15 @@
+import React from 'react';
 import { BrowserRouter, Routes, Route, } from 'react-router-dom';
-import CartPage from "../../pages/CartPage";
-import LoginPage from '../../pages/LoginPage/LoginPage';
-import ErrorPage from '../../pages/ErrorPage/ErrorPage';
-import SignupPage from '../../pages/SignupPage/SignupPage';
-import RegisterPage from '../../pages/RegisterPage/RegisterPage';
-import DetailsPage from '../../pages/DetailsPage/DetailsPage';
-import EditPage from '../../pages/EditPage/EditPage';
-import ProfilePage from '../../pages/ProfilePage.Js/ProfilePage.Js';
-import HomePage from '../../pages/HomePage/HomePage';
+import CartPage from '../pages/CartPage/CartPage';
+import LoginPage from '../pages/LoginPage/LoginPage';
+import ErrorPage from '../pages/ErrorPage/ErrorPage';
+import SignupPage from '../pages/SignupPage/SignupPage';
+import RegisterPage from '../pages/RegisterPage/RegisterPage';
+import DetailsPage from '../pages/DetailsPage/DetailsPage';
+import EditPage from '../pages/EditPage/EditPage'
+import ProfilePage from '../pages/ProfilePage/ProfilePage';
+import HomePage from '../pages/HomePage/HomePage';
+
 
 
 function Router() {
