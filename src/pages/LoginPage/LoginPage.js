@@ -1,8 +1,8 @@
 import React from "react";
-import axios from 'react';
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
-import { goToHomePage, goToSignUpPage } from "../../router/coordinator";
+import { goToHomePage, goToSignUpPage, goToRegisterPage } from "../../router/coordinator";
 
 
 export default function LoginPage() {
@@ -23,12 +23,12 @@ export default function LoginPage() {
       .post('https://us-central1-missao-newton.cloudfunctions.net/rappi4A/login', body)
       .then((res) => {
         console.log(res.data)
-
-        if (res.data.user.hasAdress === false) {
+        localStorage.setItem('token', res.data.token)
+        if (res.data.user.hasAddress === false) {
           alert(
-            `${res.data.user} you do not have an account. We will redirect you...`
+            `${res.data.user.name}, you do not have an account. We will redirect you...`
           );
-          goToSignUpPage(navigate);
+          goToRegisterPage(navigate);
         } else {
           alert("Welcome!")
           goToHomePage(navigate);
@@ -40,26 +40,6 @@ export default function LoginPage() {
         alert("Error. Try again!")
       })
   }
-
-  // console.log(body)
-
-  // const login = (e) => {
-  //   e.preventDefault();
-  //   // const token = localStorage.getItem('token');
-
-  //   axios
-  //   .post('https://us-central1-missao-newton.cloudfunctions.net/rappi4A/login', body)
-  //   .then((res) => {
-  //     console.log(res.data)
-  //     localStorage.setItem('token', res.data.token)
-  //     alert("Welcome!")
-  //     goToHomePage(navigate)
-  //   })
-  //   .catch((error) => {
-  //     console.log(error)
-  //     alert("User not found")
-  //   })
-  // }
 
   return (
     <div>

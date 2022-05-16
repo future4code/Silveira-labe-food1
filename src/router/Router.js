@@ -17,7 +17,8 @@ function Router() {
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<LoginPage />} />
+                    <Route index path="/" element={<HomePage />} />
+                    <Route path="login" element={<LoginPage />} />
                     <Route path="signup" element={<SignupPage/>} />
                     <Route path="registerpage" element={<RegisterPage />} />
                     <Route path="profilepage" element={<ProfilePage />} />
