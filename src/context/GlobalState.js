@@ -9,7 +9,7 @@ const GlobalState = (props) => {
     const token = window.localStorage.getItem("token");
     const headers = {
         headers: {
-            auth: token
+            auth: token          
         }
     }
 
@@ -46,8 +46,7 @@ const GlobalState = (props) => {
         axios
         .get(`${BASE_URL}/restaurants`, headers)
         .then((res)=>{
-            console.log(res.data)
-            setRestaurants(res.data)
+            setRestaurants(res.data.restaurants)
         })
         .catch((err) => {
             console.log(err)
@@ -58,8 +57,8 @@ const GlobalState = (props) => {
         axios
         .get(`${BASE_URL}/restaurants/${id}`, headers)
         .then((res)=>{
-            console.log(res.data)
-            setRestaurantDetail(res.data)
+            console.log(res.data.restaurant)
+            setRestaurantDetail(res.data.restaurant)
         })
         .catch((err) => {
             console.log(err)
