@@ -14,7 +14,7 @@ const GlobalState = (props) => {
     }
 
     const [address, setAddress] = useState([]);
-    const [profile, setProfile] = useState([]);
+    const [profile, setProfile] = useState({});
     const [restaurants, setRestaurants] = useState([]);
     const [restaurantDetail, setRestaurantDetail] = useState([]);
 
@@ -35,7 +35,8 @@ const GlobalState = (props) => {
         .get(`${BASE_URL}/profile`, headers)
         .then((res)=>{
             console.log(res.data)
-            setProfile(res.data)
+            console.log("Fui chamada")
+            setProfile(res.data.user)
         })
         .catch((err) => {
             console.log(err)
