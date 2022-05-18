@@ -14,7 +14,7 @@ const theme = createTheme ({
 
         },
         text: {
-        primary: colorsTwo
+        primary: colorsTree
     }
 }})
 

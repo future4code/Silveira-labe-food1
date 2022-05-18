@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import useForm from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import { goToHomePage } from "../../router/coordinator";
-import { InputsContainer, ScreenContainer } from "./styled";
+import { InputsContainer, LogoImage, ScreenContainer } from "./styled";
 import { Button, TextField, Typography } from "@mui/material";
+import Logo from '../../assets/Logo.png'
 
 export default function SignupPage() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ export default function SignupPage() {
 
   return (
     <ScreenContainer>
-      <div>Logo</div>
+      <LogoImage src={Logo}/>
       <Typography variant="h4" color={"primary"}>
         Cadastrar
       </Typography>
@@ -57,7 +58,7 @@ export default function SignupPage() {
             color={"primary"}
             fullWidth
             margin={"normal"}
-            label={""}
+            label={"E-mail"}
             required
           />
           <TextField
@@ -70,6 +71,7 @@ export default function SignupPage() {
             color={"primary"}
             fullWidth
             margin={"normal"}
+            label={"CPF"}
             required
             minlength="11"
           />
@@ -77,12 +79,13 @@ export default function SignupPage() {
             placeholder="Senha"
             name="password"
             value={form.password}
-            onChange={""}
+            onChange={InputChange}
             type="password"
             variant={"outlined"}
             color={"primary"}
             fullWidth
             margin={"normal"}
+            label={"Senha"}
             required
             minlength="8"
           />
@@ -98,8 +101,10 @@ export default function SignupPage() {
             color={"primary"}
             fullWidth
             margin={"normal"}
+            label={"Confirme sua senha"}
+
           />
-          <Button type="submit" fullWidth color={"primary"}>
+          <Button type="submit" variant='contained' fullWidth color={"primary"}>
             Criar
           </Button>
         </form>

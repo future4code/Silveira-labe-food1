@@ -16,3 +16,10 @@ export const ScreenContainer = styled.div`
   margin-top: 100px;
   width: 100vw;
 `;
+
+export const LogoImage = styled.img`
+    width: 15vw;
+    max-width: 350px;
+    padding-top: 6px;
+    margin-bottom: 15px;
+`

@@ -7,6 +7,7 @@ import SignupPage from '../pages/SignupPage/SignupPage';
 import RegisterPage from '../pages/RegisterPage/RegisterPage';
 import DetailsPage from '../pages/DetailsPage/DetailsPage';
 import EditPage from '../pages/EditPage/EditPage'
+import EditAdress from '../pages/EditAdress/EditAdress'
 import ProfilePage from '../pages/ProfilePage/ProfilePage';
 import HomePage from '../pages/HomePage/HomePage';
 
@@ -25,6 +26,7 @@ function Router() {
                     <Route path="homepage" element={<HomePage/>} />
                     <Route path="detailspage/:id" element={<DetailsPage />} />
                     <Route path="editpage" element={<EditPage />} />
+                    <Route path="editadress" element={<EditAdress />} />
                     <Route path="cartpage" element={<CartPage />} />
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
