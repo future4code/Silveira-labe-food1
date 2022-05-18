@@ -28,3 +28,17 @@ export const SignUp = (body) =>{
         console.log(err.data.message)
     })
 }
+export const updateProfile = (body) =>{
+    const Headers={
+        headers:{
+            auth: localStorage.getItem('token')
+        }
+    }
+    axios.put(`${BASE_URL}/profile`,body,Headers)
+    .then(()=>{
+        alert("Atualização feita")
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+}

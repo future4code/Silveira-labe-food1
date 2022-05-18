@@ -17,26 +17,41 @@ const GlobalState = (props) => {
     const [profile, setProfile] = useState({});
     const [restaurants, setRestaurants] = useState([]);
     const [restaurantDetail, setRestaurantDetail] = useState([]);
+    const [orderHistory, setOrderHistory] = useState()
 
-    const getAddress = () => {
+
+    const getAddress = (setForm) => {
         axios
         .get(`${BASE_URL}/profile/address`, headers)
         .then((res) => {
             console.log(res.data);
             setAddress(res.data);
+            setForm({
+                neighbourhood:res.data.address.neighbourhood,
+                number:res.data.address.number,
+                city:res.data.address.city,
+                apartament:res.data.address.apartament,
+                state:res.data.address.state,
+                street:res.data.address.street
+            })
+            
         })
         .catch((err) => {
             console.log(err)
         })
     }
 
-    const getProfile = () => {
+    const getProfile = (setForm) => {
         axios
         .get(`${BASE_URL}/profile`, headers)
         .then((res)=>{
             console.log(res.data)
-            console.log("Fui chamada")
             setProfile(res.data.user)
+            setForm({
+                name: res.data.user.name,
+                email: res.data.user.email,
+                cpf:res.data.user.cpf,
+            })
         })
         .catch((err) => {
             console.log(err)
@@ -66,9 +81,20 @@ const GlobalState = (props) => {
         })
     }
 
-    const states = { address, profile, restaurants, restaurantDetail }
-    const setters = { setAddress, setProfile, setRestaurants, setRestaurantDetail }
-    const requests = { getAddress, getProfile, getRestaurants, getRestaurantDetail }
+    const getOrdersHistory = () =>{
+        axios.get(`${BASE_URL}/orders/history`,headers)
+        .then((res)=>{
+            setOrderHistory(res.data.orders)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
+
+    const states = { address, profile, restaurants, restaurantDetail, orderHistory }
+    const setters = { setAddress, setProfile, setRestaurants, setRestaurantDetail, setOrderHistory }
+    const requests = { getAddress, getProfile, getRestaurants, getRestaurantDetail,getOrdersHistory }
     const values = { token, headers }
 
     return (
