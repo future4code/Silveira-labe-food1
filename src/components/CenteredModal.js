@@ -1,36 +1,42 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import GlobalStateContext from '../context/GlobalStateContext';
+import { quantityNumbers } from '../constants/urls';
+import "./styled-CenteredModal.css"
 
 export default function CenteredModal(props) {
+    const {states, setters, requests} = useContext(GlobalStateContext)
+    const {qtd} = states;
+    const {setQtd} = setters;
+    const {onChangeQuantity, addToCart} = requests
+
     return (
         <Modal
             {...props}
-            size="md"
+            size="lg"
             aria-labelledby="contained-modal-title-vcenter"
+            className='modal-backdrop'
             centered
         >
-            <Modal.Header>
+            <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     Selecione a quantidade:
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <select>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">10</option>
-                </select>
+            <select value={qtd} onChange={onChangeQuantity} >
+              <option value={0}></option>
+              {quantityNumbers.map((qnt) => {
+                return (
+                  <option key={qnt} value={qnt}>{qnt}</option>
+                )
+              })
+              }
+            </select>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant='outline-primary'>Adicionar ao carrinho</Button>
+                <Button variant='outline-primary' onClick={() => addToCart(props.product)}>Adicionar ao carrinho</Button>
             </Modal.Footer>
         </Modal>
     )

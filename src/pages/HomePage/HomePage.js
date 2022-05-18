@@ -1,6 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react'
 import GlobalStateContext from "../../context/GlobalStateContext"
 import CardRestaurant from "../../components/CardRestaurant";
+import { Modal, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Image from "../../assets/image.png";
+import styled from "styled-components"
+
+const IMG = styled.img`
+/* background-image: url('./assets/image.png');
+background-size: contain; */
+display: block;
+margin-left: auto;
+margin-right: auto;
+width:100%
+`
 
 
 export default function HomePage() {
@@ -143,9 +156,17 @@ export default function HomePage() {
     )})
 )
 
+const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }, []);
+
   return (
-    <div>
-   
+    <div>   
+{isLoading ? <IMG src={Image} alt="Logo da rappi4A" /> :
+<>
       <div>
         <p>Search:</p>
         <input
@@ -155,13 +176,15 @@ export default function HomePage() {
         />
       </div>
 
-      <button onClick={filterAsiaticos}>Asiática</button>
-      <button onClick={filterHamburguer}>Burger</button>
-      <button onClick={filterItaliana}>Italiana</button>
-      <button onClick={filterMexicanos}>Mexicana</button>
-      <button onClick={filterPetiscos}>Petiscos</button>
-      <button onClick={filterSorvetes}>Sorvetes</button>
-      {mapAndFilterRestaurants}
-    </div>
+      <Button variant="outline-primary" onClick={filterAsiaticos}>Asiática</Button>
+      <Button variant="outline-primary" onClick={filterHamburguer}>Burger</Button>
+      <Button variant="outline-primary" onClick={filterItaliana}>Italiana</Button>
+      <Button variant="outline-primary" onClick={filterMexicanos}>Mexicana</Button>
+      <Button variant="outline-primary" onClick={filterPetiscos}>Petiscos</Button>
+      <Button variant="outline-primary" onClick={filterSorvetes}>Sorvetes</Button>
+      {mapAndFilterRestaurants}</>
+}
+    </div>   
+
   )
 }
