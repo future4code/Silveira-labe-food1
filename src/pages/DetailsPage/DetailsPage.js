@@ -23,20 +23,14 @@ export default function DetailsPage() {
   const { setRestaurants, setRestaurantDetail, setCart, setQtd } = setters;
   const { getRestaurants, getRestaurantDetail, addToCart, onChangeQuantity } = requests;
   const { token, headers } = values;
-  // const [addButton, setAddButton] = useState(quantidade === 0 ? "Adicionar" : "Remover") // CART
   const params = useParams();
   const navigate = useNavigate();
-  // const [modalShow, setModalShow] = useState(false);
 
 
   useEffect(() => {
     getRestaurants();
     getRestaurantDetail(params.id);
   }, [])
-
-  // const showModal = () => {
-  //   setModalShow(true);
-  // }
 
   console.log(cart);
  
@@ -46,23 +40,9 @@ export default function DetailsPage() {
       <CardProduct 
       product = {product}
       key={product.id}
+
       />
-      // <DivProdutos key={product.id}>
-
-      //   <IMG src={product.photoUrl} alt={product.photoUrl} />
-      //   <p>{product.name}</p>
-      //   <span>{product.description}</span>
-      //   <p><strong>Preço: </strong>R$ {product.price},00</p>
-      //   <CenteredModal
-      //     show={modalShow}
-      //     product={product}
-      //     onHide={()=>setModalShow(false)}
-      //   />
-          
-      //   <Button variant="outline-primary" onClick={showModal}>Adicionar</Button>
-
-      // </DivProdutos>
-    )
+     )
   })
 
   return (

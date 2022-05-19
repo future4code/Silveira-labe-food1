@@ -67,6 +67,7 @@ export default function EditPage() {
             fullWidth
             margin={"normal"}
             label={"CPF"}
+            pattern={"([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"}
             required
             minLength="11"
           />

@@ -1,10 +1,13 @@
+
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { BASE_URL } from "../constants/urls";
 import { useNavigate } from 'react-router-dom';
 import GlobalStateContext from './GlobalStateContext'
+import { Modal, Button } from 'react-bootstrap';
 
 const GlobalState = (props) => {
+
     // const navigate = useNavigate();
     const token = window.localStorage.getItem("token");
     const headers = {
@@ -28,43 +31,42 @@ const GlobalState = (props) => {
 
     const getAddress = (setForm) => {
         axios
+            .get(`${BASE_URL}/profile/address`, headers)
+            .then((res) => {
+                console.log(res.data);
+                setAddress(res.data);
+                setForm({
+                    neighbourhood: res.data.address.neighbourhood,
+                    number: res.data.address.number,
+                    city: res.data.address.city,
+                    apartament: res.data.address.apartament,
+                    state: res.data.address.state,
+                    street: res.data.address.street
+                })
 
-        .get(`${BASE_URL}/profile/address`, headers)
-        .then((res) => {
-            console.log(res.data);
-            setAddress(res.data);
-            setForm({
-                neighbourhood:res.data.address.neighbourhood,
-                number:res.data.address.number,
-                city:res.data.address.city,
-                apartament:res.data.address.apartament,
-                state:res.data.address.state,
-                street:res.data.address.street
             })
-            
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+            .catch((err) => {
+                console.log(err)
+            })
 
     }
 
     const getProfile = (setForm) => {
         axios
 
-        .get(`${BASE_URL}/profile`, headers)
-        .then((res)=>{
-            console.log(res.data)
-            setProfile(res.data.user)
-            setForm({
-                name: res.data.user.name,
-                email: res.data.user.email,
-                cpf:res.data.user.cpf,
+            .get(`${BASE_URL}/profile`, headers)
+            .then((res) => {
+                console.log(res.data)
+                setProfile(res.data.user)
+                setForm({
+                    name: res.data.user.name,
+                    email: res.data.user.email,
+                    cpf: res.data.user.cpf,
+                })
             })
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+            .catch((err) => {
+                console.log(err)
+            })
 
     }
 
@@ -91,27 +93,6 @@ const GlobalState = (props) => {
             })
     }
 
-    // const placeOrder = () => {
-    //     const body = {
-    //         "products": [{
-    //             "id": "",
-    //             "quantity": 0
-    //         }]
-    //     }
-    //     axios
-    //     .post(`${BASE_URL}/order`, body, headers)
-    //     .then((res) => {
-    //         console.log(res);
-    //             alert("Pedido realizado com sucesso!")
-    //     })
-    //     .catch((err) => {
-    //         if (cart.quantity.length > 0) {
-    //             alert("Você já possui um pedido em andamento!")
-    //         }
-    //         console.log(err)
-    //     })
-    // }
-
     const activeOrder = () => {
         axios
             .get(`${BASE_URL}/active-order`, headers)
@@ -134,44 +115,74 @@ const GlobalState = (props) => {
             })
     }
 
-    const addToCart = (product) => {
-        let newItem = { item: { id: product.id, name: product.name, description: product.description, photo: product.photoUrl, price: product.price, quantity: qtd }, restaurantDetail }
+    const addToCart = (product, onHide, setAddButton) => {
+        let newItem = {
+            item: {
+                id: product.id,
+                name: product.name,
+                description: product.description,
+                photo: product.photoUrl,
+                price: product.price,
+                quantity: Number(qtd)
+            }, 
+            restaurantDetail
+        }
         let newArray = [...cart, newItem];
-        console.log(newItem)
         setCart(newArray)
+        onHide();
+        if (newItem.item.quantity > 0) {
+            setAddButton(false)
+        }
     }
-    // function addProductCard(id) {
-    //    const copyCart = [...cart]
 
-    //    const item = copyCart((product) => product.id === id);
+    const removeProduct = (produtos, setRemoveButton) => {
+        const product = cart.find((item) => {
+            return item.item.id === produtos.id
+        })
+        if (product){
+        if (product.item.quantity <= 1) {
+            const newArray = cart.filter((produto) => {
+                return produto.item.id !== produtos.id
+            })
+            setCart(newArray)
+            setRemoveButton();
+        } else {
+            const newArray = cart.map((produto) => {
+                if (produto.item.id === produtos.id) {
+                    //   const cartAux = {item: {quantity=quantity-1}}
+                    const cartAux = { item: { ...produto.item, quantity: produto.item.quantity - 1 } }
+                    console.log("cartaux", cartAux)
+                    return cartAux;
+                }
+                return produto
+            })
+            setCart(newArray)
+        }
+    }
+    }
 
-    //    if(!item){
-    //        copyCart.push({id: id, quantity: qtd})
-    //    }else{
-    //        item.quantity = item.quantity + 1
-    // }
-    //   setCart(copyCart)
-    // }
 
     const onChangeQuantity = (event) => {
         let value = event.target.value
         setQtd(value)
     }
 
-
-    const states = { address, profile, restaurants, restaurantDetail, cart, orders, orderHistory  }
-    const setters = { setAddress, setProfile, setRestaurants, setRestaurantDetail, setCart, setOrders , setOrderHistory}
-    const requests = { getAddress, getProfile, getRestaurants, getRestaurantDetail, addToCart, onChangeQuantity ,getOrdersHistory }
-
-    const getOrdersHistory = () =>{
-        axios.get(`${BASE_URL}/orders/history`,headers)
-        .then((res)=>{
-            setOrderHistory(res.data.orders)
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
+    const getOrdersHistory = () => {
+        axios.get(`${BASE_URL}/orders/history`, headers)
+            .then((res) => {
+                setOrderHistory(res.data.orders)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
+
+
+    const states = { address, profile, restaurants, restaurantDetail, cart, orders, orderHistory }
+    const setters = { setAddress, setProfile, setRestaurants, setRestaurantDetail, setCart, setOrders, setOrderHistory }
+    const requests = { getAddress, getProfile, getRestaurants, getRestaurantDetail, addToCart, onChangeQuantity, getOrdersHistory, removeProduct }
+
+
 
 
     const values = { token, headers }

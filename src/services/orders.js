@@ -1,22 +1,28 @@
-import {BASE_URL} from "../constants/urls.js"
+import { BASE_URL } from "../constants/urls.js"
 import axios from 'axios'
+import GlobalStateContext from '../context/GlobalStateContext'
+import { useContext } from "react"
 
-const placeOrder = (id, address, subtotal) => {
-    const url = `${BASE_URL}/restaurants/${id}/order`
+
+export const placeOrder = (restaurant, body, subtotal, clearCart) => {
+
+    const url = `${BASE_URL}/restaurants/${restaurant.id}/order`
     const token = window.localStorage.getItem("token");
     const headers = {
         headers: {
-            auth: token          
+            auth: token
         }
     }
-        axios
-        .post(url, headers)
-        .then((res)=>{
-            // alert(`Pedido em Andamento ${address} Subtotal: ${subtotal}`)
-            alert("Pedido realizado com sucesso!")
+    axios
+        .post(url, body, headers)
+        .then((res) => {
+            alert(`Pedido em Andamento: ${restaurant.name} Subtotal: ${subtotal}`)
+            clearCart();
         })
         .catch((err) => {
             console.log(err)
-            alert("Você já possui um pedido em andamento!")
+            alert(err.response.data.message)
         })
-    }
+
+        
+}
