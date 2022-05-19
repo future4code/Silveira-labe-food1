@@ -29,9 +29,9 @@ const CardsRestaurant = (props) => {
     return(
         <Card>
             <img src={props.logoUrl} />
-            <Paragraph>  {props.name} </Paragraph>  
+            <Paragraph> {props.name} </Paragraph>  
             <Paragraph> {props.description} </Paragraph>
-            <Paragraph>R$: {props.price}  </Paragraph>       
+            <Paragraph> {props.price}  </Paragraph>       
             <Button variant="outline-primary" onClick={() => goToDetailsPage(navigate, props.id)}>Ver detalhes</Button>
         </Card>
     )

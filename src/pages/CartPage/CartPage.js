@@ -9,55 +9,50 @@ import { placeOrder } from "../../services/orders"
 import { useParams, useNavigate } from 'react-router-dom'
 
 export default function CartPage(props) {
-  
-  const {states, setters, requests} = useContext(GlobalStateContext)
-  const {cart, restaurantDetail} = states;
-  const {setCart, setRestaurantDetail} = setters;
+
+  const { states, setters, requests } = useContext(GlobalStateContext)
+  const { cart, restaurantDetail } = states;
+  const { setCart, setRestaurantDetail } = setters;
+  const [payment, setPayment] = useState('');
 
 
-  // const frete = cart.reduce((acumulador, restaurantDetail) => acumulador+restaurantDetail.shipping*, 0)
   const frete = restaurantDetail.shipping
-  // const subtotal = () => {
+ 
+  const subtotal = cart.reduce((acumulador, cart) => 
+  acumulador + cart.item.price * cart.item.quantity, 0) 
 
-  // }
-const subtotal = cart.reduce((acumulador, cart) => acumulador+cart.item.price*cart.item.quantity, 0)
 
 
-//  const removeProduto = (produtos) => {
-//     if (quantidade <= 1) {
-//       const novaListaCarrinho = carrinho.filter((produto) => {
-//         return produto.id !== produtos.id
-//       })
-//       setCarrinho(novaListaCarrinho)
-//     } else {
-//       const novaListaCarrinho = carrinho.map((produto) => {
-//         if (produto.id === produtos.id) {
-//           return { ...produto, setQuantidade(quantidade - 1)}
-//         }
-//         return produto
-//       })
-//       setCarrinho(novaListaCarrinho)
-//     }
 
-  // }
-
-  
-  const confirmOrder = () => {
-    // if (){}
-    //   // cart.paymentMethod
+  const clearCart = () => {
+    setCart([])
   }
 
-   const listaCarrinho = cart.map((cart) => {
+  const confirmOrder = (restaurantDetail, subtotal) => {
+    let productsArray = [];
+    cart && cart.forEach((order) => {
+      productsArray.push({ id: order.item.id, quantity: order.item.quantity })
+    })
+    const orderFinal = ({
+      products: productsArray,
+      paymentMethod: payment
+    })
+    placeOrder(restaurantDetail, orderFinal, subtotal, clearCart)
+  }
+
+  const listaCarrinho = cart.map((cart) => {
     return (
       <CardsRestaurant
         key={cart.item.id}
-        name = {cart.item.name}
-        description= {cart.item.description}
-        price= {cart.item.price}   
-        logoUrl = {cart.item.photo}    
+        name={cart.item.name}
+        description={cart.item.description}
+        price={cart.item.price}
+        logoUrl={cart.item.photo}
       />
     )
-  })
+  }
+  )
+
 
   return (
     <div>
@@ -82,26 +77,20 @@ const subtotal = cart.reduce((acumulador, cart) => acumulador+cart.item.price*ca
 
       <DivSubtotal>
         SUBTOTAL
-        <DivSubValor> R$ {subtotal}</DivSubValor>
+        <DivSubValor> R$ {subtotal.toFixed(2)}</DivSubValor>
       </DivSubtotal>
 
       Forma de Pagamento
       <Line />
-      <form action="/action_page.php">
-        <input type="radio" id="din" name="pagamento" value="din" />
+      <form action="/action_page.php" onChange={(e) => setPayment(e.target.value)}>
+        <input type="radio" id="din" name="pagamento" value="money" />
         <label for="din">Dinheiro</label><br></br>
-        <input type="radio" id="css" name="oagamento" value="cartao" />
+        <input type="radio" id="css" name="pagamento" value="creditcard" />
         <label for="cartao">Cartão de Crédito</label>
       </form>
 
 
-      <button onClick={() => confirmOrder}> Confirmar</button>
-
-
-
-
-
-
+      <button onClick={() => confirmOrder( restaurantDetail, subtotal )}> Confirmar</button>
 
     </div>
   )
