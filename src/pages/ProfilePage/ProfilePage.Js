@@ -1,66 +1,83 @@
-import React, {useContext, useEffect} from 'react'
-import GlobalStateContext from '../../context/GlobalStateContext'
-import styled from 'styled-components'
-
-const ProfileMainContainer = styled.div`
-  display: flex;
-  flex-direction:column;
-  justify-content: center;
-  align-items: center;
-
-`
-const ProfileCardContainer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  width: 360px;
-  height: 250px;
-  border: 1px solid black;
-  margin: 10px;
-`
-const InfoContainer = styled.div`
-  display: flex;
-  flex-direction:column;
-  justify-content: center;
-  border: 1px solid black;
-  width: 60%;
-  margin: 10px;
-
-`
+import React, { useContext, useEffect } from "react";
+import GlobalStateContext from "../../context/GlobalStateContext";
+import { useNavigate } from "react-router-dom";
+import { Button, Icon, IconButton, Typography } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import {
+  ButtonContainer,
+  InputsContainer,
+  ScreenContainer,
+  Line,
+  BoxPerfil,
+} from "./styled";
+import CardHistorico from "../../components/CardHistorico";
+import { goToEdit, goToEditAdress } from "../../router/coordinator";
 
 export default function ProfilePage() {
-  const { states, setters, requests } = useContext(GlobalStateContext)
-  // console.log(requests)
+  const { states, requests } = useContext(GlobalStateContext);
+  const navigate = useNavigate()
+ 
 
-  useEffect(()=>{
-    requests.getProfile()
-  },[])
+  useEffect(() => {
+    requests.getProfile();
+    requests.getOrdersHistory();
+  }, []);
 
-  
+  const listOfOrder =
+    states.orderHistory &&
+    states.orderHistory.map((order) => {
+      return (
+        <CardHistorico
+          restaurantName={order.restaurantName}
+          totalPrice={order.totalPrice}
+          createdAt={order.createdAt}
+        />
+      );
+    });
+
   return (
-    <ProfileMainContainer>
-      <h3>ProfilePage</h3>
-      <ProfileCardContainer>
-        <InfoContainer>
+    <ScreenContainer>
+      <Typography variant="h6" color={"primary"}>
+        Meu Perfil
+      </Typography>
+      <br></br>
+      <InputsContainer>
+        <BoxPerfil>
           <p>{states.profile.name}</p>
           <p>{states.profile.email}</p>
           <p>{states.profile.cpf}</p>
-        </InfoContainer>
-        <button>edit</button>
-      </ProfileCardContainer>
-      <ProfileCardContainer>
+        </BoxPerfil>
+        <IconButton onClick={()=>goToEdit(navigate)} color="primary">
+          <EditIcon />
+        </IconButton>
+      </InputsContainer>
+
+      <Typography variant="h6" color={"primary"}>
+        Endereço Cadastrado
+      </Typography>
+      <br></br>
+
+      <InputsContainer>
         <div>
-          <p>Endereço cadastrado</p>
           <p>{states.profile.address}</p>
-        </div>
-        <button>edit</button>
-      </ProfileCardContainer>
-      <h3>Historico</h3>
-      <hr></hr>
-      <div>
-        area de historico de pedidos
-      </div>
+        </div> 
 
-
-    </ProfileMainContainer>
-  )
+        <IconButton onClick={()=>goToEditAdress(navigate)} color="primary">
+          <EditIcon />
+        </IconButton>
+      </InputsContainer>
+      <Typography variant="h6" color={"primary"}>
+        Historico de pedidos:
+      </Typography>
+      <Line />
+      <InputsContainer>
+        {listOfOrder &&
+          (listOfOrder.length > 0 ? (
+            listOfOrder
+          ) : (
+            <h4>Voce não realizou nenhum pedido</h4>
+          ))}
+      </InputsContainer>
+    </ScreenContainer>
+  );
 }

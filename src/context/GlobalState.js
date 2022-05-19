@@ -17,34 +17,55 @@ const GlobalState = (props) => {
     const [profile, setProfile] = useState({});
     const [restaurants, setRestaurants] = useState([]);
     const [restaurantDetail, setRestaurantDetail] = useState([]);
+
     const [orders, setOrders] = useState([]);
     const [cart, setCart] = useState([])
     const [qtd, setQtd] = useState(0);
 
+    const [orderHistory, setOrderHistory] = useState()
 
-    const getAddress = () => {
+
+
+    const getAddress = (setForm) => {
         axios
-            .get(`${BASE_URL}/profile/address`, headers)
-            .then((res) => {
-                console.log(res.data);
-                setAddress(res.data);
+
+        .get(`${BASE_URL}/profile/address`, headers)
+        .then((res) => {
+            console.log(res.data);
+            setAddress(res.data);
+            setForm({
+                neighbourhood:res.data.address.neighbourhood,
+                number:res.data.address.number,
+                city:res.data.address.city,
+                apartament:res.data.address.apartament,
+                state:res.data.address.state,
+                street:res.data.address.street
             })
-            .catch((err) => {
-                console.log(err)
-            })
+            
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
     }
 
-    const getProfile = () => {
+    const getProfile = (setForm) => {
         axios
-            .get(`${BASE_URL}/profile`, headers)
-            .then((res) => {
-                console.log(res.data)
-                console.log("Fui chamada")
-                setProfile(res.data.user)
+
+        .get(`${BASE_URL}/profile`, headers)
+        .then((res)=>{
+            console.log(res.data)
+            setProfile(res.data.user)
+            setForm({
+                name: res.data.user.name,
+                email: res.data.user.email,
+                cpf:res.data.user.cpf,
             })
-            .catch((err) => {
-                console.log(err)
-            })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
     }
 
     const getRestaurants = () => {
@@ -137,9 +158,22 @@ const GlobalState = (props) => {
         setQtd(value)
     }
 
-    const states = { address, profile, restaurants, restaurantDetail, cart, orders }
-    const setters = { setAddress, setProfile, setRestaurants, setRestaurantDetail, setCart, setOrders }
-    const requests = { getAddress, getProfile, getRestaurants, getRestaurantDetail, addToCart, onChangeQuantity }
+
+    const states = { address, profile, restaurants, restaurantDetail, cart, orders, orderHistory  }
+    const setters = { setAddress, setProfile, setRestaurants, setRestaurantDetail, setCart, setOrders , setOrderHistory}
+    const requests = { getAddress, getProfile, getRestaurants, getRestaurantDetail, addToCart, onChangeQuantity ,getOrdersHistory }
+
+    const getOrdersHistory = () =>{
+        axios.get(`${BASE_URL}/orders/history`,headers)
+        .then((res)=>{
+            setOrderHistory(res.data.orders)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
+
     const values = { token, headers }
 
     return (

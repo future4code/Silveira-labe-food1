@@ -12,7 +12,7 @@ const useForm = (initialState) => {
         setForm(initialState)
     }
 
-    return  { form, InputChange, clear }
+    return  { form, InputChange, clear, setForm }
 }
 
 export default useForm 

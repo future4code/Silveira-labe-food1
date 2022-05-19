@@ -7,7 +7,10 @@ import SignupPage from '../pages/SignupPage/SignupPage';
 import RegisterPage from '../pages/RegisterPage/RegisterPage';
 import DetailsPage from '../pages/DetailsPage/DetailsPage';
 import EditPage from '../pages/EditPage/EditPage'
-import ProfilePage from '../pages/ProfilePage/ProfilePage'
+
+import EditAdress from '../pages/EditAdress/EditAdress'
+import ProfilePage from '../pages/ProfilePage/ProfilePage';
+
 import HomePage from '../pages/HomePage/HomePage';
 
 
@@ -23,9 +26,14 @@ function Router() {
                     <Route path="register" element={<RegisterPage />} />
                     <Route path="profile" element={<ProfilePage />} />
                     <Route path="homepage" element={<HomePage/>} />
+
                     <Route path="details/:id" element={<DetailsPage />} />
                     <Route path="edit" element={<EditPage />} />
                     <Route path="cart" element={<CartPage />} />
+
+                    <Route path="editadress" element={<EditAdress />} />
+
+
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
             </BrowserRouter>
