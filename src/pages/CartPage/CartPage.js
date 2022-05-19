@@ -1,31 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { DivTitle, Line, DivEndereco, DivEnderecoPessoa, DivEntrega, DivNomeRest } from './styled'
 import { DivRestaurante, DivTempo, DivEndRest, DivFrete, DivSubtotal, DivSubValor } from './styled'
 import axios from 'axios'
 import { BASE_URL } from '../../constants/urls'
 import CardsRestaurant from '../../components/CardRestaurant'
+import GlobalStateContext from '../../context/GlobalStateContext'
+import { placeOrder } from "../../services/orders"
+import { useParams, useNavigate } from 'react-router-dom'
 
 export default function CartPage(props) {
   
-  // const {name, price} = restaurantDetail.products
-  // const {shipping, products, address} = restaurantDetail
+  const {states, setters, requests} = useContext(GlobalStateContext)
+  const {cart, restaurantDetail} = states;
+  const {setCart, setRestaurantDetail} = setters;
 
-  // const listaCarrinho = props.carrinho.map((item) => {
-  //   return (
-  //     <CardsRestaurant
-  //       key={item.id}
-  //     />
-  //   )
-  // })
 
-  const totalFrete = () => {
+  // const frete = cart.reduce((acumulador, restaurantDetail) => acumulador+restaurantDetail.shipping*, 0)
+  const frete = restaurantDetail.shipping
+  // const subtotal = () => {
 
-  }
-  // const frete = carrinho.reduce((acumulador, produto) => acumulador+carrinho.shipping*, 0)
-  const subtotal = () => {
-
-  }
-  // const subotal = carrinho.reduce((acumulador, produto) => acumulador+carrinho.price*produto.quantidade, 0)
+  // }
+const subtotal = cart.reduce((acumulador, cart) => acumulador+cart.item.price*cart.item.quantity, 0)
 
 
 //  const removeProduto = (produtos) => {
@@ -46,23 +41,23 @@ export default function CartPage(props) {
 
   // }
 
-  const placeOrder = (id, address, subtotal) => {
-    const url = `${BASE_URL}/restaurants/${id}/order`
-    const token = window.localStorage.getItem("token");
-    const headers = {
-        headers: {
-            auth: token          
-        }
-    }
-        axios
-        .post(url, headers)
-        .then((res)=>{
-            alert(`Pedido em Andamento ${address} Subtotal: ${subtotal}`)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    }
+  
+  const confirmOrder = () => {
+    // if (){}
+    //   // cart.paymentMethod
+  }
+
+   const listaCarrinho = cart.map((cart) => {
+    return (
+      <CardsRestaurant
+        key={cart.item.id}
+        name = {cart.item.name}
+        description= {cart.item.description}
+        price= {cart.item.price}   
+        logoUrl = {cart.item.photo}    
+      />
+    )
+  })
 
   return (
     <div>
@@ -81,9 +76,9 @@ export default function CartPage(props) {
         <DivTempo>PUXAR TEMpO</DivTempo>
       </DivRestaurante>
 
-      {/* {listaCarrinho} */}
+      {listaCarrinho}
 
-      <DivFrete>Frete: R$ {totalFrete}</DivFrete>
+      <DivFrete>Frete: R$ {frete}</DivFrete>
 
       <DivSubtotal>
         SUBTOTAL
@@ -100,7 +95,7 @@ export default function CartPage(props) {
       </form>
 
 
-      <button onClick={() => placeOrder()}> Confirmar</button>
+      <button onClick={() => confirmOrder}> Confirmar</button>
 
 
 

@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { goToDetailsPage } from "../router/coordinator";
+import { Modal, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Card = styled.div`
   border-radius: 10px;
@@ -27,11 +29,10 @@ const CardsRestaurant = (props) => {
     return(
         <Card>
             <img src={props.logoUrl} />
-            <Paragraph> Nome: {props.name} </Paragraph>  
-            <Paragraph> Descrição: {props.description} </Paragraph>
-            <Paragraph> Tempo de Entrega: {props.deliveryTime} min </Paragraph>       
-            <Paragraph> Frete: R${props.shipping},00 </Paragraph>
-            <button onClick={() => goToDetailsPage(navigate, props.id)}>Ver detalhes</button>
+            <Paragraph>  {props.name} </Paragraph>  
+            <Paragraph> {props.description} </Paragraph>
+            <Paragraph>R$: {props.price}  </Paragraph>       
+            <Button variant="outline-primary" onClick={() => goToDetailsPage(navigate, props.id)}>Ver detalhes</Button>
         </Card>
     )
 }

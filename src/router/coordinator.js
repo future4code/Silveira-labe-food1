@@ -3,7 +3,7 @@ export const goToHomePage = (navigate) => {
 }
 
 export const goToDetailsPage = (navigate, id) => {
-    navigate(`/detailspage/${id}`)
+    navigate(`/details/${id}`)
 }
 
 export const goToLoginPage = (navigate) => {
@@ -19,7 +19,7 @@ export const goToProfilePage = (navigate) => {
 }
 
 export const goToCartPage = (navigate) => {
-    navigate("/cart")
+    navigate(`/cart`)
 }
 
 export const goToEdit = (navigate) => {
@@ -31,5 +31,5 @@ export const goToEditAdress = (navigate) => {
 }
 
 export const goToRegisterPage = (navigate) => {
-    navigate("/registerpage")
+    navigate("/register")
 }

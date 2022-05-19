@@ -7,8 +7,10 @@ import SignupPage from '../pages/SignupPage/SignupPage';
 import RegisterPage from '../pages/RegisterPage/RegisterPage';
 import DetailsPage from '../pages/DetailsPage/DetailsPage';
 import EditPage from '../pages/EditPage/EditPage'
+
 import EditAdress from '../pages/EditAdress/EditAdress'
 import ProfilePage from '../pages/ProfilePage/ProfilePage';
+
 import HomePage from '../pages/HomePage/HomePage';
 
 
@@ -21,13 +23,17 @@ function Router() {
                     <Route index path="/" element={<HomePage />} />
                     <Route path="login" element={<LoginPage />} />
                     <Route path="signup" element={<SignupPage/>} />
-                    <Route path="registerpage" element={<RegisterPage />} />
-                    <Route path="profilepage" element={<ProfilePage />} />
+                    <Route path="register" element={<RegisterPage />} />
+                    <Route path="profile" element={<ProfilePage />} />
                     <Route path="homepage" element={<HomePage/>} />
-                    <Route path="detailspage/:id" element={<DetailsPage />} />
-                    <Route path="editpage" element={<EditPage />} />
+
+                    <Route path="details/:id" element={<DetailsPage />} />
+                    <Route path="edit" element={<EditPage />} />
+                    <Route path="cart" element={<CartPage />} />
+
                     <Route path="editadress" element={<EditAdress />} />
-                    <Route path="cartpage" element={<CartPage />} />
+
+
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
             </BrowserRouter>
