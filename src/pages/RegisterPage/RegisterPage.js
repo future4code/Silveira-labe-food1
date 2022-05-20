@@ -29,7 +29,7 @@ export default function RegisterPage() {
   return (
     <>
       <ScreenContainer>
-        <Typography variant="h4" color={"primary"}>Meu Endereço</Typography>
+        <Typography variant="h6" color={"primary"} sx={{color: 'black'}}>Meu Endereço</Typography>
         <InputsContainer>
           <form onSubmit={onSubmitRegister}>
             <TextField
@@ -114,7 +114,7 @@ export default function RegisterPage() {
               required
               type={"text"}
             />
-            <Button type="submit" fullWidth color={"primary"}>
+            <Button type="submit" variant='contained' fullWidth color={"primary"} sx={{'margin-top': '15px'}}>
               Salvar
             </Button>
           </form>

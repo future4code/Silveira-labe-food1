@@ -32,7 +32,7 @@ export default function SignupPage() {
   return (
     <ScreenContainer>
       <LogoImage src={Logo}/>
-      <Typography variant="h4" color={"primary"}>
+      <Typography variant="h6" color={"primary"} sx={{color:'black'}}>
         Cadastrar
       </Typography>
       <InputsContainer>
@@ -105,7 +105,7 @@ export default function SignupPage() {
             label={"Confirme sua senha"}
 
           />
-          <Button type="submit" variant='contained' fullWidth color={"primary"}>
+          <Button type="submit" variant='contained' fullWidth color={"primary"} sx={{color:'black', 'margin-top': '15px'}}>
             Criar
           </Button>
         </form>

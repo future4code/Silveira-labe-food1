@@ -27,7 +27,7 @@ export default function EditPage() {
   
   return (
     <ScreenContainer>
-      <Typography variant="h4" color={"primary"}>
+      <Typography variant="h6" color={"primary"} sx={{color:'black'}}>
         Editar Perfil
       </Typography>
       <InputsContainer>

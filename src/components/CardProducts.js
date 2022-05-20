@@ -5,14 +5,9 @@ import CenteredModal from "../../src/components/CenteredModal"
 import styled from "styled-components"
 import { removeProduct } from "../context/GlobalState"
 import GlobalStateContext from "../context/GlobalStateContext";
+import { ButtonAdd, ButtonRem, IMG, CardProdutos, DivBody, DivQuant } from "./CardProductsStyled";
+import { DivTitle, DivDesc, DivPrice } from "./CardProductsStyled";
 
-const IMG = styled.img`
-width: 300px;
-`
-const DivProdutos = styled.div`
-  word-wrap: break-word;
-  width: 300px;
-`
 
 const CardProduct = ({ product }) => {
   const [modalShow, setModalShow] = useState(false);
@@ -30,28 +25,49 @@ const CardProduct = ({ product }) => {
   const setRemoveButton = () => {
     setAddButton(true)
   }
+
+  const findProduct = cart.find((item) => {
+    return item.item.id === product.id
+})
+
   return (
-    <DivProdutos key={product.id}>
+    <CardProdutos key={product.id}>
 
       <IMG src={product.photoUrl} alt={product.photoUrl} />
-      <p>{product.name}</p>
-      <span>{product.description}</span>
-      <p><strong>Preço: </strong>R$ {product.price}</p>
+
+      <DivBody>
+        <DivTitle><p>{product.name}</p></DivTitle>      
+        <DivDesc><span>{product.description}</span>  </DivDesc>
+        <DivPrice><p><strong> </strong>R$ {product.price}</p> </DivPrice>
       <CenteredModal
         show={modalShow}
         product={product}
         onHide={() => setModalShow(false)}
         setAddButton={()=> setAddButton(false)}
       />
+       </DivBody>     
+
+       {/* {
+        findProduct.item.id === product.id && findProduct.item.quantity >=1
+          &&
+          <DivQuant>
+          <p>{product.quantity}</p>
+          </DivQuant>
+          
+        } */}
+    
       {
         addButton === true
           ?
-          <Button variant="outline-primary" onClick={showModal}>Adicionar</Button>
+          <ButtonAdd  onClick={showModal}>Adicionar</ButtonAdd>
           :
-          <Button variant="outline-danger" onClick={()=>removeProduct(product, setRemoveButton)}>Remover</Button>
+          <ButtonRem onClick={()=>removeProduct(product, setRemoveButton)}>Remover</ButtonRem>
       }
+      
 
-    </DivProdutos>)
+
+    </CardProdutos>
+    )
 }
 
 export default CardProduct

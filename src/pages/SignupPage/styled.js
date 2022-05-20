@@ -13,7 +13,7 @@ export const ScreenContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 55px;
   width: 100vw;
 `;
 
@@ -23,3 +23,6 @@ export const LogoImage = styled.img`
     padding-top: 6px;
     margin-bottom: 15px;
 `
+export const Button = styled.button`
+    margin-top: 5px;
+`;

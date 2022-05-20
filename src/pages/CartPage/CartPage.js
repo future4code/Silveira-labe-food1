@@ -3,10 +3,10 @@ import { DivTitle, Line, DivEndereco, DivEnderecoPessoa, DivEntrega, DivNomeRest
 import { DivRestaurante, DivTempo, DivEndRest, DivFrete, DivSubtotal, DivSubValor } from './styled'
 import axios from 'axios'
 import { BASE_URL } from '../../constants/urls'
-import CardsRestaurant from '../../components/CardRestaurant'
 import GlobalStateContext from '../../context/GlobalStateContext'
 import { placeOrder } from "../../services/orders"
 import { useParams, useNavigate } from 'react-router-dom'
+import CardProducts from "../../components/CardProducts"
 
 export default function CartPage(props) {
 
@@ -42,12 +42,13 @@ export default function CartPage(props) {
 
   const listaCarrinho = cart.map((cart) => {
     return (
-      <CardsRestaurant
+      <CardProducts
         key={cart.item.id}
         name={cart.item.name}
         description={cart.item.description}
         price={cart.item.price}
         logoUrl={cart.item.photo}
+        quantity={cart.item.quantity}
       />
     )
   }
