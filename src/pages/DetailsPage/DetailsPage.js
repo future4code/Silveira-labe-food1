@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { quantityNumbers } from '../../constants/urls';
 import CenteredModal from '../../components/CenteredModal'
 import CardProduct from '../../components/CardProducts';
+import {EachProduct} from "./styled";
 
 const IMG = styled.img`
 width: 300px;
@@ -37,11 +38,13 @@ export default function DetailsPage() {
 
   const productsMap = restaurantDetail.products && restaurantDetail.products.map((product) => {   
     return (
-      <CardProduct 
-      product = {product}
-      key={product.id}
+      <EachProduct>
+        <CardProduct 
+        product = {product}
+        key={product.id}
 
-      />
+        />
+      </EachProduct>
      )
   })
 

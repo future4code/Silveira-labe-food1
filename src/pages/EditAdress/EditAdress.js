@@ -26,7 +26,7 @@ export default function EditAdress() {
   return (
    
       <ScreenContainer>
-        <Typography variant="h4" color={"primary"}>Editar meu endereço:</Typography>
+        <Typography variant="h6" color={"primary"} sx={{color:'black'}}>Editar meu endereço:</Typography>
         <InputsContainer>
           <form onSubmit={onSubmitEditAddress} >
             <TextField

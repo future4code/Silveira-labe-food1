@@ -9,6 +9,8 @@ import {
   ScreenContainer,
   Line,
   BoxPerfil,
+  AddressContainer,
+  HistoryContainer
 } from "./styled";
 import CardHistorico from "../../components/CardHistorico";
 import { goToEdit, goToEditAdress } from "../../router/coordinator";
@@ -47,7 +49,7 @@ export default function ProfilePage() {
           <p>{states.profile.email}</p>
           <p>{states.profile.cpf}</p>
         </BoxPerfil>
-        <IconButton onClick={()=>goToEdit(navigate)} color="primary">
+        <IconButton onClick={()=>goToEdit(navigate)} color="primary" sx={{color: 'black'}}>
           <EditIcon />
         </IconButton>
       </InputsContainer>
@@ -57,27 +59,27 @@ export default function ProfilePage() {
       </Typography>
       <br></br>
 
-      <InputsContainer>
+      <AddressContainer>
         <div>
           <p>{states.profile.address}</p>
         </div> 
 
-        <IconButton onClick={()=>goToEditAdress(navigate)} color="primary">
+        <IconButton onClick={()=>goToEditAdress(navigate)} sx={{color: 'black'}}>
           <EditIcon />
         </IconButton>
-      </InputsContainer>
-      <Typography variant="h6" color={"primary"}>
+      </AddressContainer>
+      <Typography varivant="h6" color={"primary"}>
         Historico de pedidos:
       </Typography>
       <Line />
-      <InputsContainer>
+      <HistoryContainer>
         {listOfOrder &&
           (listOfOrder.length > 0 ? (
             listOfOrder
           ) : (
             <h4>Voce não realizou nenhum pedido</h4>
           ))}
-      </InputsContainer>
+      </HistoryContainer>
     </ScreenContainer>
   );
 }

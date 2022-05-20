@@ -1,8 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Typography } from "@mui/material";
 
 
 
+const CardContainer = styled.div`
+    border: 1px solid black;
+    border-radius: 16px;
+    width: 80vw;
+    margin: 0 0 10px;
+    padding: 10px;
+`
 
 const CardHistorico = (props) =>{
 
@@ -20,11 +28,11 @@ const CardHistorico = (props) =>{
     const date = convertDate(createdAt)
     
     return(
-        <div>
-            <p>{restaurantName}</p>
+        <CardContainer>
+            <Typography sx={{color: "#E86E5A"}}>{restaurantName}</Typography>
             <p>{date}</p>
-            <p>Subtotal {totalPriceBRL}</p>
-        </div>
+            <p><b>SUBTOTAL</b> {totalPriceBRL}</p>
+        </CardContainer>
     )
 }
 export default CardHistorico;

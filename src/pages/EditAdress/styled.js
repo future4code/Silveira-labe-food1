@@ -16,3 +16,6 @@ export const ScreenContainer = styled.div`
   margin-top: 100px;
   width: 100vw;
 `;
+export const Button = styled.button`
+    margin-top: 5px;
+`;

@@ -3,6 +3,9 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import { goToHomePage, goToSignUpPage, goToRegisterPage } from "../../router/coordinator";
+import { InputsContainer, ScreenContainer, LogoImage } from "./styled";
+import { Button, TextField,Typography } from "@mui/material";
+import Logo from '../../assets/Logo.png'
 
 
 export default function LoginPage() {
@@ -42,34 +45,43 @@ export default function LoginPage() {
   }
 
   return (
-    <div>
-
-
-      <form onSubmit={login}>
-        <input
-          name={"email"}
-          value={form.email}
-          onChange={InputChange}
-          type={"email"}
-          placeholder="Email"
-          required
-        />
-
-        <input
-          name={"password"}
-          value={form.password}
-          onChange={InputChange}
-          type={"password"}
-          placeholder="Password"
-          required
-        />
-
-        <button type="submit">Login</button>
-        {/* <button onClick={() => goToHomePage(navigate)}>Login</button> */}
-      </form>
-
-      <button onClick={() => goToSignUpPage(navigate)}>Sign Up</button>
-
-    </div>
+    <ScreenContainer>
+       <LogoImage src={Logo}/>
+      <Typography variant="h6" color={"primary"} sx={{color: 'black'}}>
+        Entrar
+      </Typography>
+      <InputsContainer>
+        <form onSubmit={login}>
+          <TextField
+            name={"email"}
+            value={form.email}
+            onChange={InputChange}
+            type={"email"}
+            placeholder="Email"
+            required
+            variant={"outlined"}
+            color={"primary"}
+            fullWidth
+            margin={"normal"}
+            label={"Digite seu e-mail"}
+          />
+          <TextField
+            name={"password"}
+            value={form.password}
+            onChange={InputChange}
+            type={"password"}
+            placeholder="Password"
+            required
+            variant={"outlined"}
+            color={"primary"}
+            fullWidth
+            margin={"normal"}
+            label={"Digite sua senha"}
+          />
+          <Button variant='contained' type="submit" sx={{color: 'black'}} fullWidth>Entrar</Button>
+        </form>
+        <Button fullWidth onClick={() => goToSignUpPage(navigate)} sx={{color:'black', 'margin-top': '15px'}}><strong>Não possui cadastro? Clique aqui.</strong></Button>
+      </InputsContainer>
+    </ScreenContainer>
   )
 }

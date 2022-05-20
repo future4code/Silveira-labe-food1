@@ -20,6 +20,7 @@ const GlobalState = (props) => {
     const [profile, setProfile] = useState({});
     const [restaurants, setRestaurants] = useState([]);
     const [restaurantDetail, setRestaurantDetail] = useState([]);
+    const [pedidoAtivo, setPedidoAtivo] = useState(null);
 
     const [orders, setOrders] = useState([]);
     const [cart, setCart] = useState([])
@@ -98,11 +99,20 @@ const GlobalState = (props) => {
             .get(`${BASE_URL}/active-order`, headers)
             .then((res) => {
                 console.log(res.data)
+                setPedidoAtivo(res.data.order);
+                if (res.data.order) {
+                    setTimeout(() => {
+                        activeOrder();
+                    },res.data.order.expiresAt - new Date().getTime())  
+                }
             })
             .catch((error) => {
                 console.log(error)
             })
     }
+
+    //new Date().getTime()
+
 
     const ordersHistory = () => {
         axios
@@ -124,7 +134,7 @@ const GlobalState = (props) => {
                 photo: product.photoUrl,
                 price: product.price,
                 quantity: Number(qtd)
-            }, 
+            },
             restaurantDetail
         }
         let newArray = [...cart, newItem];
@@ -139,26 +149,26 @@ const GlobalState = (props) => {
         const product = cart.find((item) => {
             return item.item.id === produtos.id
         })
-        if (product){
-        if (product.item.quantity <= 1) {
-            const newArray = cart.filter((produto) => {
-                return produto.item.id !== produtos.id
-            })
-            setCart(newArray)
-            setRemoveButton();
-        } else {
-            const newArray = cart.map((produto) => {
-                if (produto.item.id === produtos.id) {
-                    //   const cartAux = {item: {quantity=quantity-1}}
-                    const cartAux = { item: { ...produto.item, quantity: produto.item.quantity - 1 } }
-                    console.log("cartaux", cartAux)
-                    return cartAux;
-                }
-                return produto
-            })
-            setCart(newArray)
+        if (product) {
+            if (product.item.quantity <= 1) {
+                const newArray = cart.filter((produto) => {
+                    return produto.item.id !== produtos.id
+                })
+                setCart(newArray)
+                setRemoveButton();
+            } else {
+                const newArray = cart.map((produto) => {
+                    if (produto.item.id === produtos.id) {
+                        //   const cartAux = {item: {quantity=quantity-1}}
+                        const cartAux = { item: { ...produto.item, quantity: produto.item.quantity - 1 } }
+                        console.log("cartaux", cartAux)
+                        return cartAux;
+                    }
+                    return produto
+                })
+                setCart(newArray)
+            }
         }
-    }
     }
 
 
@@ -178,9 +188,16 @@ const GlobalState = (props) => {
     }
 
 
-    const states = { address, profile, restaurants, restaurantDetail, cart, orders, orderHistory }
+    const states = { address, profile, restaurants, restaurantDetail, cart, orders, orderHistory, pedidoAtivo }
     const setters = { setAddress, setProfile, setRestaurants, setRestaurantDetail, setCart, setOrders, setOrderHistory }
-    const requests = { getAddress, getProfile, getRestaurants, getRestaurantDetail, addToCart, onChangeQuantity, getOrdersHistory, removeProduct }
+    const requests = {
+        getAddress,
+        getProfile,
+        getRestaurants, getRestaurantDetail,
+        addToCart, onChangeQuantity,
+        getOrdersHistory, removeProduct,
+        activeOrder
+    }
 
 
 

@@ -49,3 +49,33 @@ justify-content: space-between;
 export const DivSubValor = styled.div`
 color:#E86E5A;
 `
+
+export const ButtonAdd = styled.button`
+border: none;
+border-radius: 15px 0px 15px 0px;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+cursor: pointer;
+background-color: white;
+color: black;
+border: 2px solid #555555;
+`
+
+export const ButtonRem= styled.button`
+border: none;
+border-radius: 15px 0px 15px 0px;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+cursor: pointer;
+background-color: white;
+color: red;
+border: 2px solid #555555;
+`
