@@ -10,7 +10,9 @@ import {
   Line,
   BoxPerfil,
   AddressContainer,
-  HistoryContainer
+  HistoryContainer,
+  LineHeader,
+  Address
 } from "./styled";
 import CardHistorico from "../../components/CardHistorico";
 import { goToEdit, goToEditAdress } from "../../router/coordinator";
@@ -18,7 +20,7 @@ import { goToEdit, goToEditAdress } from "../../router/coordinator";
 export default function ProfilePage() {
   const { states, requests } = useContext(GlobalStateContext);
   const navigate = useNavigate()
- 
+
 
   useEffect(() => {
     requests.getProfile();
@@ -39,9 +41,10 @@ export default function ProfilePage() {
 
   return (
     <ScreenContainer>
-      <Typography variant="h6" color={"primary"}>
+      <Typography variant="h6" sx={{ color: 'black' }}>
         Meu Perfil
       </Typography>
+      <LineHeader />
       <br></br>
       <InputsContainer>
         <BoxPerfil>
@@ -49,26 +52,28 @@ export default function ProfilePage() {
           <p>{states.profile.email}</p>
           <p>{states.profile.cpf}</p>
         </BoxPerfil>
-        <IconButton onClick={()=>goToEdit(navigate)} color="primary" sx={{color: 'black'}}>
+        <IconButton onClick={() => goToEdit(navigate)} color="primary" sx={{ color: 'black',position: 'relative', bottom: '25px', }}>
           <EditIcon />
         </IconButton>
       </InputsContainer>
 
-      <Typography variant="h6" color={"primary"}>
-        Endereço Cadastrado
-      </Typography>
-      <br></br>
+      <Address>
+        <Typography variant="h6" color='primary' sx={{ color: '#8E8E93' }}>
+          Endereço Cadastrado
+        </Typography>
 
-      <AddressContainer>
-        <div>
-          <p>{states.profile.address}</p>
-        </div> 
+        <AddressContainer>
+          <div>
+            <p>{states.profile.address}</p>
+          </div>
 
-        <IconButton onClick={()=>goToEditAdress(navigate)} sx={{color: 'black'}}>
-          <EditIcon />
-        </IconButton>
-      </AddressContainer>
-      <Typography varivant="h6" color={"primary"}>
+          <IconButton onClick={() => goToEditAdress(navigate)} sx={{ color: 'black',position: 'relative', bottom: '25px' }}>
+            <EditIcon />
+          </IconButton>
+        </AddressContainer>
+      </Address>
+
+      <Typography varivant="h6" sx={{ color: 'black' }}>
         Historico de pedidos:
       </Typography>
       <Line />
@@ -77,7 +82,7 @@ export default function ProfilePage() {
           (listOfOrder.length > 0 ? (
             listOfOrder
           ) : (
-            <h4>Voce não realizou nenhum pedido</h4>
+            <h4>Você não realizou nenhum pedido</h4>
           ))}
       </HistoryContainer>
     </ScreenContainer>

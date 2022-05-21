@@ -7,7 +7,9 @@ import Image from "../../assets/image.png";
 import styled from "styled-components"
 import ActiveOrderComponent from "../../components/ActiveOrderComponent";
 import useProtectedPage from "../../hooks/useProtectedPage";
+import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
+import Logout from "../../assets/iconelogout.png"
 
 const IMG = styled.img`
 display: block;
@@ -19,7 +21,7 @@ width:100%;
 const InputBusca = styled.input`
 width: 330px;
 height: 30px;
-border-radius: 1px;
+border-radius: 3px;
 display: flex;
 flex-wrap: wrap;
 padding: 25px;
@@ -31,6 +33,7 @@ justify-content: center;
 align-items: center;
 flex-direction: column;
 padding: 20px;
+height: 10vh;
 `
 const DivButton = styled.div`
 display:flex;
@@ -50,7 +53,7 @@ margin: 10px;
 }
 `
 
-const EachRestaurant = styled.div `
+const EachRestaurant = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 15px;
@@ -59,6 +62,30 @@ const EachRestaurant = styled.div `
 const TextSearch = styled.p`
 text-align: center;
 `
+
+const H3 = styled.h3`
+text-align: center;
+padding: 5px;
+margin-top: -20px;
+margin-bottom: -5px;
+`
+const Line = styled.hr`
+  width: 100%;
+  border: 1px solid black;
+`;
+
+const ButtonLogout = styled.button`
+border-radius: 10px;
+cursor: pointer;
+margin-left: -270px;
+`
+
+const ImgLogout = styled.img`
+  height: 25px;
+  margin-left: 10px;
+  margin-top: 10px;
+`
+
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -171,22 +198,6 @@ export default function HomePage() {
     .map((rest) => {
       return (
         <EachRestaurant>
-        <CardRestaurant key={rest.id}
-          id={rest.id}
-          name={rest.name}
-          logoUrl={rest.logoUrl}
-          deliveryTime={rest.deliveryTime}
-          shipping={rest.shipping}
-          description={rest.description}
-        />
-        </EachRestaurant>
-      )
-    })) : (restaurantesFiltrados && (restaurantesFiltrados).filter((res) => {
-      return res.name.includes(filterRestaurants)
-    })
-      .map((rest) => {
-        return (
-        <EachRestaurant>
           <CardRestaurant key={rest.id}
             id={rest.id}
             name={rest.name}
@@ -196,6 +207,22 @@ export default function HomePage() {
             description={rest.description}
           />
         </EachRestaurant>
+      )
+    })) : (restaurantesFiltrados && (restaurantesFiltrados).filter((res) => {
+      return res.name.includes(filterRestaurants)
+    })
+      .map((rest) => {
+        return (
+          <EachRestaurant>
+            <CardRestaurant key={rest.id}
+              id={rest.id}
+              name={rest.name}
+              logoUrl={rest.logoUrl}
+              deliveryTime={rest.deliveryTime}
+              shipping={rest.shipping}
+              description={rest.description}
+            />
+          </EachRestaurant>
         )
       })
   )
@@ -210,23 +237,32 @@ export default function HomePage() {
   useEffect(() => {
     activeOrder();
   }, [])
-  
+
   useEffect(() => {
     token !== null ? getRestaurants() : navigate("/login")
   }, [])
 
   return (
     <div>
-       
+
       {isLoading ? <IMG src={Image} alt="Logo da rappi4A" /> :
         <>
+          <ImgLogout src={Logout} onClick={logout} />
+          <H3>Rappi4</H3>
+          <Line/>
           <DivInputs>
-          <button onClick={logout}>Logout</button>
-            <InputBusca
+            
+            <TextField
+              variant='outlined'
+              color='primary'
+              fullWidth
               type="text"
+              margin='normal'
+              label='Restaurante'
               value={filterRestaurants}
               onChange={(ev) => setFilterRestaurants(ev.target.value)}
               placeholder="Restaurante"
+              sx={{position: 'relative', bottom: '15px', width: '95vw'}}
             />
           </DivInputs>
 

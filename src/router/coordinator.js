@@ -23,7 +23,7 @@ export const goToCartPage = (navigate) => {
 }
 
 export const goToEdit = (navigate) => {
-    navigate("/editpage")
+    navigate("/edit")
 }
 
 export const goToEditAdress = (navigate) => {

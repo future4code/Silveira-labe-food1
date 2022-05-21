@@ -52,10 +52,7 @@ export default function DetailsPage() {
 
   return (
     <div>
-      <Button variant="outline-primary" onClick={() => goToHomePage(navigate)}>Voltar</Button>
       {productsMap}
-      
-      <Button variant="outline-primary" onClick={()=> goToCartPage(navigate)}>Ir para carrinho</Button>
     </div>
   )
 }
