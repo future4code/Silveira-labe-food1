@@ -20,17 +20,17 @@ export const addAddress = (body) =>{
     })
 }
 
-export const SignUp = (body, event) =>{
-    let navigate = useNavigate();
-    event.preventDefault();
-    
+export const signUp = (event, body) =>{
+    event.preventDefault()
     axios.post(`${BASE_URL}/signup`,body)
     .then((resp)=>{
+        console.log(resp.data.token)
         localStorage.setItem('token', resp.data.token)
-        alert("Usuario criado ")
+        alert("Usuario criado!")
     })
     .catch((err) =>{
-        alert(err.data)
+        console.log(err)
+        alert("Erro ao criar usuário!")
     })
 }
 

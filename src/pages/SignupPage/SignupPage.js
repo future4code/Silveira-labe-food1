@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import useForm from "../../hooks/useForm";
+import { BASE_URL } from "../../constants/urls";
 import { useNavigate } from "react-router-dom";
-import { goToHomePage } from "../../router/coordinator";
-import { InputsContainer, LogoImage, ScreenContainer } from "./styled";
+import { goToHomePage, goToRegisterPage } from "../../router/coordinator";
+import { InputsContainer, LogoImage, ScreenContainer, TextFieldCpf } from "./styled";
 import { Button, TextField, Typography } from "@mui/material";
 import Logo from '../../assets/Logo.png'
-import {SignUp} from '../../services/users'
+import axios from 'axios'
+
 
 export default function SignupPage() {
   const navigate = useNavigate();
@@ -16,22 +18,38 @@ export default function SignupPage() {
     cpf: "",
     password: "",
   });
+  // const inputPropsCpf = {
+  //   pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"
+  // }
 
   const onChangeConfirmPassword = (e) => {
     setConfirmPassword(e.target.value);
   };
 
   const onSubmitSignup = (event) => {
-    SignUp(form, event);
+    event.preventDefault()
     if (form.password === confirmPassword) {
-      event.preventDefault();
-      clear();
-      goToHomePage(navigate);
-    } else {
-      alert("Senhas divergentes");
-    }
+    axios.post(`${BASE_URL}/signup`, form)
+    .then((resp)=>{
+        console.log(resp.data.token)
+        localStorage.setItem('token', resp.data.token)
+        alert("Usuario criado!")
+        goToRegisterPage(navigate)
+    })
+    .catch((err) =>{
+        console.log(err.data)
+        alert("Erro ao criar usuário!")
+    })
+  }
+  else {
+    alert("Senhas divergentes")
+  }
   };
 
+  console.log(form.password, confirmPassword)
+  console.log(form)
+  
+  
   return (
     <ScreenContainer>
       <LogoImage src={Logo}/>
@@ -64,7 +82,7 @@ export default function SignupPage() {
             label={"E-mail"}
             required
           />
-          <TextField
+          <TextFieldCpf
             placeholder="000.000.000-00"
             name="cpf"
             value={form.cpf}
@@ -75,9 +93,7 @@ export default function SignupPage() {
             fullWidth
             margin={"normal"}
             label={"CPF"}
-            pattern={"([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"}
             required
-            minlength="11"
           />
           <TextField
             placeholder="Senha"
@@ -100,13 +116,13 @@ export default function SignupPage() {
             onChange={onChangeConfirmPassword}
             type="password"
             required
-            minlength="8"
             variant={"outlined"}
             color={"primary"}
             fullWidth
             margin={"normal"}
             label={"Confirme sua senha"}
             minLength="8"
+            
 
           />
           <Button type="submit" variant='contained' fullWidth color={"primary"} sx={{color:'black', 'margin-top': '15px'}}>

@@ -16,7 +16,7 @@ const GlobalState = (props) => {
         }
     }
 
-    const [address, setAddress] = useState([]);
+    const [address, setAddress] = useState({});
     const [profile, setProfile] = useState({});
     const [restaurants, setRestaurants] = useState([]);
     const [restaurantDetail, setRestaurantDetail] = useState([]);
@@ -35,7 +35,7 @@ const GlobalState = (props) => {
             .get(`${BASE_URL}/profile/address`, headers)
             .then((res) => {
                 console.log(res.data);
-                setAddress(res.data);
+                setAddress(res.data.address);
                 setForm({
                     neighbourhood: res.data.address.neighbourhood,
                     number: res.data.address.number,
@@ -98,7 +98,6 @@ const GlobalState = (props) => {
         axios
             .get(`${BASE_URL}/active-order`, headers)
             .then((res) => {
-                console.log(res.data)
                 setPedidoAtivo(res.data.order);
                 if (res.data.order) {
                     setTimeout(() => {
