@@ -5,13 +5,17 @@ import { Typography } from "@mui/material";
 
 
 const CardContainer = styled.div`
-    border: 1px solid black;
+    border: 1px solid #D1D1D6;
     border-radius: 16px;
-    width: 80vw;
+    width: 93vw;
+    height: 15vh;
     margin: 0 0 10px;
-    padding: 10px;
+    padding: 10px 0px 0px 15px;
 `
-
+const Subtotal = styled.p`
+    position: relative;
+    top: -15px;
+`
 const CardHistorico = (props) =>{
 
     const {restaurantName, totalPrice, createdAt } = props
@@ -31,7 +35,7 @@ const CardHistorico = (props) =>{
         <CardContainer>
             <Typography sx={{color: "#E86E5A"}}>{restaurantName}</Typography>
             <p>{date}</p>
-            <p><b>SUBTOTAL</b> {totalPriceBRL}</p>
+            <Subtotal><strong>SUBTOTAL</strong>{totalPriceBRL}</Subtotal>
         </CardContainer>
     )
 }

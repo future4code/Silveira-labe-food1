@@ -7,7 +7,6 @@ import theme from "./constants/theme";
 import Footer from "./components/Footer";
 import { BrowserRouter } from 'react-router-dom';
 
-
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 

@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const Card = styled.div`
-  border-radius: 7px;
+  border-radius: 10px;
   border: solid 2px #b8b8b8;
   display: flex;
   flex-direction: column;
@@ -49,6 +49,8 @@ const DivP = styled.div`
   height: 30px;
   padding: 10px;
   margin-bottom: 10px;
+  color: #D1D1D6;
+  font-size: 16px;
 `
 
 const CardsRestaurant = (props) => {
