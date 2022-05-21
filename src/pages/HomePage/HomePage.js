@@ -218,10 +218,11 @@ export default function HomePage() {
 
   return (
     <div>
-       <button onClick={logout}>Logout</button>
+       
       {isLoading ? <IMG src={Image} alt="Logo da rappi4A" /> :
         <>
           <DivInputs>
+          <button onClick={logout}>Logout</button>
             <InputBusca
               type="text"
               value={filterRestaurants}
