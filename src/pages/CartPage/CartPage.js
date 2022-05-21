@@ -6,24 +6,22 @@ import { BASE_URL } from '../../constants/urls'
 import GlobalStateContext from '../../context/GlobalStateContext'
 import { placeOrder } from "../../services/orders"
 import { useParams, useNavigate } from 'react-router-dom'
-import CardProducts from "../../components/CardProducts"
+import CardCart from "../../components/CardCart"
 
 export default function CartPage(props) {
 
   const { states, setters, requests } = useContext(GlobalStateContext)
-  const { cart, restaurantDetail } = states;
+  const { cart, restaurantDetail, address } = states;
   const { setCart, setRestaurantDetail } = setters;
   const [payment, setPayment] = useState('');
 
 
   const frete = restaurantDetail.shipping
- 
-  const subtotal = cart.reduce((acumulador, cart) => 
-  acumulador + cart.item.price * cart.item.quantity, 0) 
 
+  const subtotal = cart.reduce((acumulador, cart) =>
+    acumulador + cart.item.price * cart.item.quantity, 0)
 
-
-
+  console.log(address);
   const clearCart = () => {
     setCart([])
   }
@@ -42,19 +40,14 @@ export default function CartPage(props) {
 
   const listaCarrinho = cart.map((cart) => {
     return (
-      <CardProducts
-        key={cart.item.id}
-        name={cart.item.name}
-        description={cart.item.description}
-        price={cart.item.price}
-        logoUrl={cart.item.photo}
-        quantity={cart.item.quantity}
+      <CardCart
+        product={cart.item}
       />
     )
   }
   )
 
-
+  console.log(address);
   return (
     <div>
       <DivTitle>
@@ -74,7 +67,7 @@ export default function CartPage(props) {
 
       {listaCarrinho}
 
-      <DivFrete>Frete: R$ {frete}</DivFrete>
+       { cart.length === 0 && <DivFrete> frete: R$ 0</DivFrete> }
 
       <DivSubtotal>
         SUBTOTAL
@@ -91,7 +84,7 @@ export default function CartPage(props) {
       </form>
 
 
-      <button onClick={() => confirmOrder( restaurantDetail, subtotal )}> Confirmar</button>
+      <button onClick={() => confirmOrder(restaurantDetail, subtotal)}> Confirmar</button>
 
     </div>
   )

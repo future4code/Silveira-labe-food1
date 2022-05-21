@@ -66,7 +66,7 @@ const GlobalState = (props) => {
                 })
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err.data.message)
             })
 
     }
@@ -111,8 +111,6 @@ const GlobalState = (props) => {
             })
     }
 
-    //new Date().getTime()
-
 
     const ordersHistory = () => {
         axios
@@ -138,7 +136,7 @@ const GlobalState = (props) => {
             restaurantDetail
         }
         let newArray = [...cart, newItem];
-        setCart(newArray)
+        setCart(newArray);
         onHide();
         if (newItem.item.quantity > 0) {
             setAddButton(false)
@@ -156,6 +154,31 @@ const GlobalState = (props) => {
                 })
                 setCart(newArray)
                 setRemoveButton();
+            } else {
+                const newArray = cart.map((produto) => {
+                    if (produto.item.id === produtos.id) {
+                        //   const cartAux = {item: {quantity=quantity-1}}
+                        const cartAux = { item: { ...produto.item, quantity: produto.item.quantity - 1 } }
+                        console.log("cartaux", cartAux)
+                        return cartAux;
+                    }
+                    return produto
+                })
+                setCart(newArray)
+            }
+        }
+    }
+
+    const removeProductCart = (produtos) => {
+        const product = cart.find((item) => {
+            return item.item.id === produtos.id
+        })
+        if (product) {
+            if (product.item.quantity <= 1) {
+                const newArray = cart.filter((produto) => {
+                    return produto.item.id !== produtos.id
+                })
+                setCart(newArray)
             } else {
                 const newArray = cart.map((produto) => {
                     if (produto.item.id === produtos.id) {
@@ -196,7 +219,7 @@ const GlobalState = (props) => {
         getRestaurants, getRestaurantDetail,
         addToCart, onChangeQuantity,
         getOrdersHistory, removeProduct,
-        activeOrder
+        activeOrder, removeProductCart
     }
 
 

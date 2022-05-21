@@ -9,7 +9,7 @@ import { ButtonAdd, ButtonRem, IMG, CardProdutos, DivBody, DivQuant } from "./Ca
 import { DivTitle, DivDesc, DivPrice } from "./CardProductsStyled";
 
 
-const CardProduct = ({ product }) => {
+const CardProduct = (props) => {
   const [modalShow, setModalShow] = useState(false);
   const [addButton, setAddButton] = useState(true);
 
@@ -26,42 +26,29 @@ const CardProduct = ({ product }) => {
     setAddButton(true)
   }
 
-  const findProduct = cart.find((item) => {
-    return item.item.id === product.id
-})
-
   return (
-    <CardProdutos key={product.id}>
+    <CardProdutos key={props.product.id}>
 
-      <IMG src={product.photoUrl} alt={product.photoUrl} />
+      <IMG src={props.product.photoUrl} alt={props.product.photoUrl} />
 
       <DivBody>
-        <DivTitle><p>{product.name}</p></DivTitle>      
-        <DivDesc><span>{product.description}</span>  </DivDesc>
-        <DivPrice><p><strong> </strong>R$ {product.price}</p> </DivPrice>
+        <DivTitle><p>{props.product.name}</p></DivTitle>      
+        <DivDesc><span>{props.product.description}</span>  </DivDesc>
+        <DivPrice><p><strong> </strong>R$ {props.product.price}</p> </DivPrice>
       <CenteredModal
         show={modalShow}
-        product={product}
+        product={props.product}
         onHide={() => setModalShow(false)}
         setAddButton={()=> setAddButton(false)}
       />
        </DivBody>     
-
-       {/* {
-        findProduct.item.id === product.id && findProduct.item.quantity >=1
-          &&
-          <DivQuant>
-          <p>{product.quantity}</p>
-          </DivQuant>
-          
-        } */}
     
       {
         addButton === true
           ?
           <ButtonAdd  onClick={showModal}>Adicionar</ButtonAdd>
           :
-          <ButtonRem onClick={()=>removeProduct(product, setRemoveButton)}>Remover</ButtonRem>
+          <ButtonRem onClick={()=>removeProduct(props.product, setRemoveButton)}>Remover</ButtonRem>
       }
       
 

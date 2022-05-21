@@ -16,7 +16,6 @@ export default function LoginPage() {
     password: ""
   })
 
-  // const body = form
 
   const login = (event) => {
     event.preventDefault();
@@ -25,7 +24,7 @@ export default function LoginPage() {
     axios
       .post('https://us-central1-missao-newton.cloudfunctions.net/rappi4A/login', body)
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data.token)
         localStorage.setItem('token', res.data.token)
         if (res.data.user.hasAddress === false) {
           alert(
@@ -40,7 +39,7 @@ export default function LoginPage() {
       })
       .catch((error) => {
         console.log(error)
-        alert("Error. Try again!")
+        alert("Usuário não encontrado")
       })
   }
 

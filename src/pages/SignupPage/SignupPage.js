@@ -5,6 +5,7 @@ import { goToHomePage } from "../../router/coordinator";
 import { InputsContainer, LogoImage, ScreenContainer } from "./styled";
 import { Button, TextField, Typography } from "@mui/material";
 import Logo from '../../assets/Logo.png'
+import {SignUp} from '../../services/users'
 
 export default function SignupPage() {
   const navigate = useNavigate();
@@ -19,7 +20,9 @@ export default function SignupPage() {
   const onChangeConfirmPassword = (e) => {
     setConfirmPassword(e.target.value);
   };
+
   const onSubmitSignup = (event) => {
+    SignUp(form, event);
     if (form.password === confirmPassword) {
       event.preventDefault();
       clear();
@@ -88,7 +91,7 @@ export default function SignupPage() {
             margin={"normal"}
             label={"Senha"}
             required
-            minlength="8"
+            minLength="8"
           />
           <TextField
             placeholder="Confirme a senha"
@@ -103,6 +106,7 @@ export default function SignupPage() {
             fullWidth
             margin={"normal"}
             label={"Confirme sua senha"}
+            minLength="8"
 
           />
           <Button type="submit" variant='contained' fullWidth color={"primary"} sx={{color:'black', 'margin-top': '15px'}}>
