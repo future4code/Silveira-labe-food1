@@ -1,38 +1,39 @@
 import React from "react";
+import { useState } from "react";
+import HomeIcon from '@mui/icons-material/Home';
+import PersonIcon from '@mui/icons-material/Person';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Box from '@mui/material/Box';
 import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import HomeIcon from '@mui/icons-material/Home';
-import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
-import PeopleIcon from '@mui/icons-material/People';
-import styled from "styled-components"
 
-export const Box = styled.div`
-bottom: 0; 
-position: fixed; 
-width: 100%;
-`
-export default function Footer () { 
+import { goToCartPage,goToProfilePage,goToHomePage } from "../router/coordinator";
+import { useNavigate } from "react-router-dom";
+
+export default function Footer (){ 
+    const [value, setValue] = useState();
+    const navigate = useNavigate()
     return (
-      <footer>
-        <Box sx={{ width: 500 }}>
+    <footer style={{position: 'fixed', width: '100%',  bottom: 0, overflow:'auto'}}>
+       <Box> 
         <BottomNavigation
-        showLabels
+        
         value={value}
+        color='primary'
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
+        
       >
-        <BottomNavigationAction label="Home" icon={< HomeIcon />} />
-        <BottomNavigationAction label="Compras" icon={< ShoppingCartCheckoutIcon />} />
-        <BottomNavigationAction label="Ferfil" icon={< PeopleIcon />} />
+        <BottomNavigationAction onClick={() => goToHomePage(navigate)} icon={<HomeIcon />} />
+        <BottomNavigationAction onClick={() => goToCartPage(navigate)}  icon={<ShoppingCartIcon />} />
+        <BottomNavigationAction onClick={() => goToProfilePage(navigate)} icon={<PersonIcon />} />
       </BottomNavigation>
-    </Box>
-        </Box>
-       </footer>
-      
-  );
+      </Box>
+    </footer>
+       
+);
 }
     
        
