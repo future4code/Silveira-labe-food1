@@ -31,6 +31,11 @@ export default function DetailsPage() {
   useEffect(() => {
     getRestaurants();
     getRestaurantDetail(params.id);
+    
+  }, [])
+
+  useEffect(() => {
+    getRestaurantDetail(params.id);    
   }, [])
 
   console.log(cart);

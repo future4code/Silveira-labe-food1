@@ -19,6 +19,7 @@ export default function RegisterPage() {
     complement: "",
   });
   console.log(form);
+  
   const onSubmitRegister = (event) => {
     event.preventDefault();
     clear();

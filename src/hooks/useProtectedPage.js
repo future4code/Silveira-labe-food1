@@ -5,14 +5,12 @@ const useProtectedPage = () => {
 
     let navigate = useNavigate()
 
-    useEffect(() => {
-        const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token')
 
-        if (token === null) {
-            navigate("/loginpage")
-        }
+    if (token === null) {
+        navigate("/login")
+    }
 
-    }, [])
 }
 
 export default useProtectedPage;

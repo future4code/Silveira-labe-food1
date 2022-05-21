@@ -8,9 +8,8 @@ import RegisterPage from '../pages/RegisterPage/RegisterPage';
 import DetailsPage from '../pages/DetailsPage/DetailsPage';
 import EditPage from '../pages/EditPage/EditPage'
 import EditAdress from '../pages/EditAdress/EditAdress'
-import ProfilePage from "../pages/ProfilePage/ProfilePage"
 import HomePage from '../pages/HomePage/HomePage';
-
+import ProfilePage from '../pages/ProfilePage/ProfilePage'
 
 
 function Router() {

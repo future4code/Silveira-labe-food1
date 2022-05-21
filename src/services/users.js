@@ -1,5 +1,7 @@
 import {BASE_URL} from "../constants/urls.js"
 import axios from 'axios'
+import { goToRegisterPage } from "../router/coordinator.js"
+import { useNavigate } from "react-router-dom";
 
 export const addAddress = (body) =>{
     const Headers={
@@ -17,17 +19,21 @@ export const addAddress = (body) =>{
         alert(erro.data.message)
     })
 }
-export const SignUp = (body) =>{
 
+export const SignUp = (body, event) =>{
+    let navigate = useNavigate();
+    event.preventDefault();
+    
     axios.post(`${BASE_URL}/signup`,body)
     .then((resp)=>{
         localStorage.setItem('token', resp.data.token)
         alert("Usuario criado ")
     })
     .catch((err) =>{
-        console.log(err.data.message)
+        alert(err.data)
     })
 }
+
 export const updateProfile = (body) =>{
     const Headers={
         headers:{

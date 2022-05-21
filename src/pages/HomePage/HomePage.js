@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from "../../assets/image.png";
 import styled from "styled-components"
 import ActiveOrderComponent from "../../components/ActiveOrderComponent";
+import useProtectedPage from "../../hooks/useProtectedPage";
+import { useNavigate } from 'react-router-dom';
 
 const IMG = styled.img`
 display: block;
@@ -59,6 +61,7 @@ text-align: center;
 `
 
 export default function HomePage() {
+  const navigate = useNavigate();
   const { states, setters, values, requests } = useContext(GlobalStateContext)
   const { restaurants, pedidoAtivo } = states;
   const { setRestaurants } = setters;
@@ -69,9 +72,14 @@ export default function HomePage() {
   const [filtered, setFiltered] = useState(false);
 
   useEffect(() => {
-    getRestaurants();
+    token !== null ? getRestaurants() : navigate("/login")
   }, [])
 
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate('/login')
+  }
 
   //Filtros para as comidas
   const filterAsiaticos = () => {
@@ -161,13 +169,6 @@ export default function HomePage() {
     setRestaurantesFiltrados(newRestaurants)
   }
 
-  console.log(restaurants, restaurantesFiltrados)
-
-  useEffect(() => {
-    getRestaurants();
-  }, [])
-
-
   //Campo de busca para filtrar restaurantes
   const mapAndFilterRestaurants = (filtered === false) ? (restaurants && (restaurants).filter((res) => {
     return res.name.includes(filterRestaurants)
@@ -217,6 +218,7 @@ export default function HomePage() {
 
   return (
     <div>
+       <button onClick={logout}>Logout</button>
       {isLoading ? <IMG src={Image} alt="Logo da rappi4A" /> :
         <>
           <DivInputs>
