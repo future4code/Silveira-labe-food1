@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, } from 'react-router-dom';
+import { Routes, Route, } from 'react-router-dom';
 import CartPage from '../pages/CartPage/CartPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
@@ -15,7 +15,7 @@ import ProfilePage from '../pages/ProfilePage/ProfilePage'
 function Router() {
     return(
         <>
-            <BrowserRouter>
+           
                 <Routes>
                     <Route index path="/" element={<HomePage />} />
                     <Route path="login" element={<LoginPage />} />
@@ -29,11 +29,8 @@ function Router() {
                     <Route path="cart" element={<CartPage />} />
 
                     <Route path="editadress" element={<EditAdress />} />
-
-
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
-            </BrowserRouter>
         </>
     )
 }

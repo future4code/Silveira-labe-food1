@@ -15,7 +15,7 @@ export const goToSignUpPage = (navigate) => {
 }
 
 export const goToProfilePage = (navigate) => {
-    navigate("/profilepage")
+    navigate("/profile")
 }
 
 export const goToCartPage = (navigate) => {

@@ -1,24 +1,35 @@
 import React from "react";
+import { useState } from "react";
+import HomeIcon from '@mui/icons-material/Home';
+import PersonIcon from '@mui/icons-material/Person';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import { goToCartPage,goToProfilePage,goToHomePage } from "../router/coordinator";
+import { useNavigate } from "react-router-dom";
 
 export default function Footer (){ 
     const [value, setValue] = useState();
+    const navigate = useNavigate()
     return (
-       <Box sx={{ width: 500 }}>
+    <footer style={{position: 'fixed', width: '100%',  bottom: 0, overflow:'auto'}}>
+       <Box> 
         <BottomNavigation
-        showLabels
-        // value={value}
-        // onChange={(event, newValue) => {
-        //   setValue(newValue);
-    }}
+        
+        value={value}
+        color='primary'
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+        
       >
-           <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+        <BottomNavigationAction onClick={() => goToHomePage(navigate)} icon={<HomeIcon />} />
+        <BottomNavigationAction onClick={() => goToCartPage(navigate)}  icon={<ShoppingCartIcon />} />
+        <BottomNavigationAction onClick={() => goToProfilePage(navigate)} icon={<PersonIcon />} />
       </BottomNavigation>
-    </Box>
+      </Box>
+    </footer>
        
 );
 }

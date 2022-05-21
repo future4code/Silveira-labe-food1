@@ -66,7 +66,7 @@ const GlobalState = (props) => {
                 })
             })
             .catch((err) => {
-                console.log(err.data.message)
+                // console.log(err.data.message)
             })
 
     }
