@@ -1,4 +1,6 @@
 import styled from "styled-components";
+// import { TextField } from "@mui/material";
+import TextField from '@mui/material/TextField';
 
 export const InputsContainer = styled.div`
 display: flex;
@@ -26,3 +28,11 @@ export const LogoImage = styled.img`
 export const Button = styled.button`
     margin-top: 5px;
 `;
+
+export const TextFieldCpf = styled(TextField)`
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+`

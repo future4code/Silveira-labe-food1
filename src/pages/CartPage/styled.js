@@ -20,7 +20,7 @@ export const DivEnderecoPessoa = styled.div`
 `
 
 export const DivEntrega = styled.div`
-    color: #EFEFF4; 
+    color: black; 
     height: 15vh;
 `
 export const DivRestaurante = styled.div`
@@ -30,10 +30,10 @@ export const DivNomeRest = styled.div`
 color:#E86E5A;
 `
 export const DivEndRest = styled.div`
-color:#D1D1D6; 
+color:black; 
 `
 export const DivTempo = styled.div`
-color:#D1D1D6; 
+color:black; 
 `
 export const DivFrete = styled.div`
 font-weight: bold;

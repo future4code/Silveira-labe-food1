@@ -7,21 +7,22 @@ import GlobalStateContext from '../../context/GlobalStateContext'
 import { placeOrder } from "../../services/orders"
 import { useParams, useNavigate } from 'react-router-dom'
 import CardCart from "../../components/CardCart"
+import useForm from '../../hooks/useForm'
 
 export default function CartPage(props) {
 
   const { states, setters, requests } = useContext(GlobalStateContext)
   const { cart, restaurantDetail, address } = states;
   const { setCart, setRestaurantDetail } = setters;
+  const { getAddress } = requests;
   const [payment, setPayment] = useState('');
-
+  const { form, InputChange, clear, setForm } = useForm({ neighbourhood: "", number: "", city: "", apartament: "", state: "", street: "" })
 
   const frete = restaurantDetail.shipping
 
   const subtotal = cart.reduce((acumulador, cart) =>
     acumulador + cart.item.price * cart.item.quantity, 0)
 
-  console.log(address);
   const clearCart = () => {
     setCart([])
   }
@@ -47,7 +48,14 @@ export default function CartPage(props) {
   }
   )
 
-  console.log(address);
+  useEffect(() => {
+    getAddress(setForm)
+  }, [])
+
+  console.log(address.number);
+  const restaurant = cart[0];
+  const {street, number} = address;
+
   return (
     <div>
       <DivTitle>
@@ -56,18 +64,25 @@ export default function CartPage(props) {
 
       <DivEntrega>
         <DivEndereco>Endereço de Entrega</DivEndereco>
-        <DivEnderecoPessoa>PUXAR DO GLOBAL O ENDEREÇO </DivEnderecoPessoa>
+        {address && <DivEnderecoPessoa><p>{street}, {number}</p></DivEnderecoPessoa>}
+
       </DivEntrega>
 
       <DivRestaurante>
-        <DivNomeRest>PUXAR DO GLOVAL O NOME DO REST</DivNomeRest>
-        <DivEndRest>PUXAR ENF REST</DivEndRest>
-        <DivTempo>PUXAR TEMpO</DivTempo>
+       {restaurant &&
+          <>
+            <DivNomeRest><h3>{restaurant.restaurantDetail.name}</h3></DivNomeRest>
+            <DivEndRest><p>{restaurant.restaurantDetail.address}</p></DivEndRest>
+            <DivTempo><p>{restaurant.restaurantDetail.deliveryTime} min</p></DivTempo>
+          </>
+
+        } 
+
       </DivRestaurante>
 
       {listaCarrinho}
 
-       { cart.length === 0 && <DivFrete> frete: R$ 0</DivFrete> }
+      {cart.length === 0 && <DivFrete> frete: R$ 0</DivFrete>}
 
       <DivSubtotal>
         SUBTOTAL

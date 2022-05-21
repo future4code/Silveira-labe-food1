@@ -22,8 +22,9 @@ export default function RegisterPage() {
   
   const onSubmitRegister = (event) => {
     event.preventDefault();
-    clear();
     addAddress(form);
+    clear();
+    
     goToHomePage(navigate);
   };
 

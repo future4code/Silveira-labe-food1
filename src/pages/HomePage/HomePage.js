@@ -71,11 +71,6 @@ export default function HomePage() {
   const [restaurantesFiltrados, setRestaurantesFiltrados] = useState([])
   const [filtered, setFiltered] = useState(false);
 
-  useEffect(() => {
-    token !== null ? getRestaurants() : navigate("/login")
-  }, [])
-
-
   const logout = () => {
     localStorage.removeItem("token");
     navigate('/login')
@@ -215,6 +210,10 @@ export default function HomePage() {
   useEffect(() => {
     activeOrder();
   }, [])
+  
+  useEffect(() => {
+    token !== null ? getRestaurants() : navigate("/login")
+  }, [])
 
   return (
     <div>
@@ -244,6 +243,5 @@ export default function HomePage() {
           {mapAndFilterRestaurants.length === 0 ? <TextSearch>Não encontramos 🥺</TextSearch> : mapAndFilterRestaurants}</>
       }
     </div>
-
   )
 }

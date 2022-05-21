@@ -38,9 +38,6 @@ export default function DetailsPage() {
     getRestaurantDetail(params.id);    
   }, [])
 
-  console.log(cart);
- 
-
   const productsMap = restaurantDetail.products && restaurantDetail.products.map((product) => {   
     return (
       <EachProduct>
