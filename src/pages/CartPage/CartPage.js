@@ -16,6 +16,8 @@ import {
   DivFrete,
   DivSubtotal,
   DivSubValor,
+  DivContainerEndereco,
+  formaDePagamento
 } from "./styled";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
@@ -26,6 +28,12 @@ import CardCart from "../../components/CardCart";
 import useForm from "../../hooks/useForm";
 import { Button, Typography } from "@mui/material";
 import { ScreenContainer } from "../EditAdress/styled";
+import styled from 'styled-components'
+
+const H4 = styled.h4`
+font-size: 20px;
+margin-left: 5px;
+`
 
 export default function CartPage(props) {
   const { states, setters, requests } = useContext(GlobalStateContext);
@@ -93,7 +101,7 @@ export default function CartPage(props) {
       </Typography>
       <DivRestaurante>
         {restaurant && (
-          <>
+          <DivContainerEndereco>
             <DivNomeRest>
               <h3>{restaurant.restaurantDetail.name}</h3>
             </DivNomeRest>
@@ -103,7 +111,7 @@ export default function CartPage(props) {
             <DivTempo>
               <p>{restaurant.restaurantDetail.deliveryTime} min</p>
             </DivTempo>
-          </>
+          </DivContainerEndereco>
         )}
       </DivRestaurante>
       {listaCarrinho}
@@ -113,7 +121,7 @@ export default function CartPage(props) {
         <DivSubValor> R$ {subtotal.toFixed(2)}
         </DivSubValor>
       </DivSubtotal>
-      Forma de Pagamento
+     <H4>Forma de Pagamento</H4>
       <Line />
       <br></br>
        <DivForm>
@@ -128,23 +136,15 @@ export default function CartPage(props) {
           <label for="cartao">Cartão de Crédito</label>
           </form>
        </DivForm>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+      
+     
+      
       
       <Button
         onClick={() => confirmOrder(restaurantDetail, subtotal)}
         variant="contained"
         fullWidth
-        color={"primary"}
+        sx={{ color: 'primary',position: 'relative', bottom: '-50px' }}
         >
         {" "}
         Confirmar
