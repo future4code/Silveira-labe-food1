@@ -239,7 +239,7 @@ export default function HomePage() {
   }, [])
 
   useEffect(() => {
-    token !== null ? getRestaurants() : navigate("/login")
+    localStorage.getItem('token') !== null ? getRestaurants() : navigate("/login")
   }, [])
 
   return (

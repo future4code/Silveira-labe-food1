@@ -1,7 +1,7 @@
 
 # Projeto de Fixação:  Labefood
 
-<strong><em>LINK DO SURGE: [Labefood](https://labe-food-silveira.surge.sh/)</em></strong>
+<strong><em>LINK DO SURGE: [Labefood](https://labe-food1-silveira.surge.sh/)</em></strong>
 
 Esse site foi desenvolvido por <em>Alessandra Sandeski Marmiroli</em>, <em>Alex Maiolino Kalawatis</em>, <em>Christian Cardeal de Miranda Penna Botto</em>, <em>Karen Naomi Cardoso Kubo </em> e <em>Maria Eduarda Lopes</em>.
 
