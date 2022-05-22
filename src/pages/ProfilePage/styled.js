@@ -16,7 +16,7 @@ export const InputsContainer = styled.div`
   width: 94vw;
   height: 15vh;
   line-height: 9.0px;
-  margin-top: -35px;
+  margin-top: -20px;
   margin-bottom: -2px;
   justify-content: space-between;
  `;

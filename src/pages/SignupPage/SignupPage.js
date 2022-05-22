@@ -18,9 +18,7 @@ export default function SignupPage() {
     cpf: "",
     password: "",
   });
-  // const inputPropsCpf = {
-  //   pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"
-  // }
+  
 
   const onChangeConfirmPassword = (e) => {
     setConfirmPassword(e.target.value);
@@ -93,6 +91,8 @@ export default function SignupPage() {
             fullWidth
             margin={"normal"}
             label={"CPF"}
+            inputProps={{ inputMode: 'numeric', pattern: '[0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2}|[0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2}' }}
+            title='Digite o cpf sem . e -'
             required
           />
           <TextField
