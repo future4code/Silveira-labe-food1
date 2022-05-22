@@ -44,8 +44,8 @@ right: 0;
 // `
 
 export const IMG = styled.img`
-width: 33.33%;
-height: 150px;
+width: 30.33%;
+height: 145px;
 `
 
 export const DivBody = styled.div`
@@ -71,12 +71,15 @@ border: 3px solid  #E5E5EA;
 // padding: 20px;
 border-radius: 15px 15px 15px 15px;
 height: 150px;
-// width: 300px;
+/* width: 100px; */
 display:flex;
 // flex-direction: row;
 // justify-content: space-between;
 position: relative;
-width: 100%;
+width: 97%;
+gap: 20px;
+margin: 3px;
+margin-left: 6px;
 `
 
 export const DivTitle= styled.div`
@@ -84,6 +87,7 @@ color: #E86E5A;
 word-wrap: break-word;
 position: relative;
 // top: 25%; left:25%;
+top: 10px;
 `
 
 export const DivDesc= styled.div`
@@ -97,7 +101,7 @@ export const DivPrice= styled.div`
 color:black;
 font-weight: bold;
 position: relative;
-// top: 75%; left:25%;
+bottom: -15px;
 `
 
 

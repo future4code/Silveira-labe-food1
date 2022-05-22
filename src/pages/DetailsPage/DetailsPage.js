@@ -10,9 +10,6 @@ import CenteredModal from '../../components/CenteredModal'
 import CardProduct from '../../components/CardProducts';
 import {EachProduct} from "./styled";
 
-const IMG = styled.img`
-width: 300px;
-`
 const DivProdutos = styled.div`
   word-wrap: break-word;
   width: 300px;
@@ -44,7 +41,6 @@ export default function DetailsPage() {
         <CardProduct 
         product = {product}
         key={product.id}
-
         />
       </EachProduct>
      )

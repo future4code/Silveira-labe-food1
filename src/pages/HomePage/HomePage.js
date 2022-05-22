@@ -193,7 +193,7 @@ export default function HomePage() {
 
   //Campo de busca para filtrar restaurantes
   const mapAndFilterRestaurants = (filtered === false) ? (restaurants && (restaurants).filter((res) => {
-    return res.name.includes(filterRestaurants)
+    return res.name.toLowerCase().includes(filterRestaurants)
   })
     .map((rest) => {
       return (
@@ -249,9 +249,9 @@ export default function HomePage() {
         <>
           <ImgLogout src={Logout} onClick={logout} />
           <H3>Rappi4</H3>
-          <Line/>
+          <Line />
           <DivInputs>
-            
+
             <TextField
               variant='outlined'
               color='primary'
@@ -262,7 +262,7 @@ export default function HomePage() {
               value={filterRestaurants}
               onChange={(ev) => setFilterRestaurants(ev.target.value)}
               placeholder="Restaurante"
-              sx={{position: 'relative', bottom: '15px', width: '95vw'}}
+              sx={{ position: 'relative', bottom: '15px', width: '95vw' }}
             />
           </DivInputs>
 
@@ -274,10 +274,11 @@ export default function HomePage() {
             <ButtonFilter onClick={filterPetiscos}>Petiscos</ButtonFilter>
             <ButtonFilter onClick={filterSorvetes}>Sorvetes</ButtonFilter>
           </DivButton>
+        
           {pedidoAtivo && <ActiveOrderComponent />}
-
           {mapAndFilterRestaurants.length === 0 ? <TextSearch>Não encontramos 🥺</TextSearch> : mapAndFilterRestaurants}</>
       }
     </div>
   )
 }
+
