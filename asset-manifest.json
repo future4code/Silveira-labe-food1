@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/labefood/static/css/main.daf496fa.chunk.css",
-    "main.js": "/labefood/static/js/main.b91522ee.chunk.js",
-    "main.js.map": "/labefood/static/js/main.b91522ee.chunk.js.map",
-    "runtime-main.js": "/labefood/static/js/runtime-main.b5347b46.js",
-    "runtime-main.js.map": "/labefood/static/js/runtime-main.b5347b46.js.map",
-    "static/css/2.68a81a89.chunk.css": "/labefood/static/css/2.68a81a89.chunk.css",
-    "static/js/2.42bfec6d.chunk.js": "/labefood/static/js/2.42bfec6d.chunk.js",
-    "static/js/2.42bfec6d.chunk.js.map": "/labefood/static/js/2.42bfec6d.chunk.js.map",
-    "index.html": "/labefood/index.html",
-    "precache-manifest.d4b752c3205289fb3b2915c25abf622b.js": "/labefood/precache-manifest.d4b752c3205289fb3b2915c25abf622b.js",
-    "service-worker.js": "/labefood/service-worker.js",
-    "static/css/2.68a81a89.chunk.css.map": "/labefood/static/css/2.68a81a89.chunk.css.map",
-    "static/css/main.daf496fa.chunk.css.map": "/labefood/static/css/main.daf496fa.chunk.css.map",
-    "static/js/2.42bfec6d.chunk.js.LICENSE.txt": "/labefood/static/js/2.42bfec6d.chunk.js.LICENSE.txt",
-    "static/media/Logo.png": "/labefood/static/media/Logo.478f123e.png"
+    "main.css": "/Silveira-labe-food1/static/css/main.daf496fa.chunk.css",
+    "main.js": "/Silveira-labe-food1/static/js/main.b09cf768.chunk.js",
+    "main.js.map": "/Silveira-labe-food1/static/js/main.b09cf768.chunk.js.map",
+    "runtime-main.js": "/Silveira-labe-food1/static/js/runtime-main.9bc29cf7.js",
+    "runtime-main.js.map": "/Silveira-labe-food1/static/js/runtime-main.9bc29cf7.js.map",
+    "static/css/2.68a81a89.chunk.css": "/Silveira-labe-food1/static/css/2.68a81a89.chunk.css",
+    "static/js/2.b6e2d43c.chunk.js": "/Silveira-labe-food1/static/js/2.b6e2d43c.chunk.js",
+    "static/js/2.b6e2d43c.chunk.js.map": "/Silveira-labe-food1/static/js/2.b6e2d43c.chunk.js.map",
+    "index.html": "/Silveira-labe-food1/index.html",
+    "precache-manifest.9d803d2496a37bdb00c5d448b56594b7.js": "/Silveira-labe-food1/precache-manifest.9d803d2496a37bdb00c5d448b56594b7.js",
+    "service-worker.js": "/Silveira-labe-food1/service-worker.js",
+    "static/css/2.68a81a89.chunk.css.map": "/Silveira-labe-food1/static/css/2.68a81a89.chunk.css.map",
+    "static/css/main.daf496fa.chunk.css.map": "/Silveira-labe-food1/static/css/main.daf496fa.chunk.css.map",
+    "static/js/2.b6e2d43c.chunk.js.LICENSE.txt": "/Silveira-labe-food1/static/js/2.b6e2d43c.chunk.js.LICENSE.txt",
+    "static/media/Logo.png": "/Silveira-labe-food1/static/media/Logo.478f123e.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.b5347b46.js",
+    "static/js/runtime-main.9bc29cf7.js",
     "static/css/2.68a81a89.chunk.css",
-    "static/js/2.42bfec6d.chunk.js",
+    "static/js/2.b6e2d43c.chunk.js",
     "static/css/main.daf496fa.chunk.css",
-    "static/js/main.b91522ee.chunk.js"
+    "static/js/main.b09cf768.chunk.js"
   ]
 }
