@@ -10,11 +10,11 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import { goToCartPage,goToProfilePage,goToHomePage } from "../router/coordinator";
 import { useNavigate } from "react-router-dom";
 
-export default function Footer (){ 
+export default function FooterHomePage (){ 
     const [value, setValue] = useState();
     const navigate = useNavigate()
     return (
-    <footer style={{width: '100%', position:"fixed", bottom: 0, overflow:'auto'}}>
+    <footer style={{width: '100vw', overflow:'auto'}}>
        <Box> 
         <BottomNavigation
         

@@ -28,7 +28,8 @@ import CardCart from "../../components/CardCart";
 import useForm from "../../hooks/useForm";
 import { Button, Typography } from "@mui/material";
 import { ScreenContainer } from "../EditAdress/styled";
-import styled from 'styled-components'
+import styled from 'styled-components';
+import Footer from './../../components/Footer';
 
 const H4 = styled.h4`
 font-size: 20px;
@@ -149,6 +150,7 @@ export default function CartPage(props) {
         {" "}
         Confirmar
       </Button>
+      <Footer/>
     </div>
   );
 }

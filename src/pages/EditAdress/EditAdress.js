@@ -6,6 +6,7 @@ import useForm from '../../hooks/useForm'
 import { goToProfilePage } from '../../router/coordinator'
 import { addAddress } from "../../services/users";
 import { InputsContainer, ScreenContainer } from './styled'
+import Footer from './../../components/Footer';
 
 export default function EditAdress() {
   const {requests} = useContext(GlobalStateContext)
@@ -116,6 +117,7 @@ export default function EditAdress() {
             </Button>
           </form>
         </InputsContainer>
+      <Footer/>
       </ScreenContainer>
    
   )

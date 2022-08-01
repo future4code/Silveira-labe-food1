@@ -9,8 +9,7 @@ import DetailsPage from '../pages/DetailsPage/DetailsPage';
 import EditPage from '../pages/EditPage/EditPage'
 import EditAdress from '../pages/EditAdress/EditAdress'
 import HomePage from '../pages/HomePage/HomePage';
-import ProfilePage from '../pages/ProfilePage/ProfilePage'
-
+import ProfilePage from '../pages/ProfilePage/ProfilePage';
 
 function Router() {
     return(

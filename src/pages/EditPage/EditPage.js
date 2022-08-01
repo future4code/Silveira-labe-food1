@@ -6,6 +6,7 @@ import GlobalStateContext from "../../context/GlobalStateContext";
 import { useNavigate } from "react-router-dom";
 import { goToProfilePage } from "../../router/coordinator";
 import { updateProfile } from "../../services/users";
+import Footer from './../../components/Footer';
 
 export default function EditPage() {
   const {requests} = useContext(GlobalStateContext)
@@ -76,6 +77,7 @@ export default function EditPage() {
           </Button>
         </form>
       </InputsContainer>
+    <Footer/>
     </ScreenContainer>
   );
 }

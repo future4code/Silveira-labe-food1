@@ -14,6 +14,7 @@ const Card = styled.div`
   flex-wrap: wrap;
   cursor: pointer;
   margin-top: 10px;
+
 @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
   width: 340px;
   img {
@@ -60,7 +61,7 @@ const CardsRestaurant = (props) => {
       <DivMainCards>
 
         <Card onClick={() => goToDetailsPage(navigate, props.id)}>
-            <img src={props.logoUrl} />
+            <img src={props.logoUrl} alt="logo" />
             <Paragraph><RestaurantName>{props.name}</RestaurantName>  </Paragraph>  
             <DivP>
             <p> {props.deliveryTime} min </p>  

@@ -1,14 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import GlobalStateContext from '../../context/GlobalStateContext'
 import { useParams, useNavigate } from 'react-router-dom'
 import styled from "styled-components"
-import { goToHomePage, goToCartPage } from "../../router/coordinator";
-import { Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { quantityNumbers } from '../../constants/urls';
-import CenteredModal from '../../components/CenteredModal'
 import CardProduct from '../../components/CardProducts';
 import {EachProduct} from "./styled";
+import FooterHomePage from '../../components/FooterHomePage';
 
 const DivProdutos = styled.div`
   word-wrap: break-word;
@@ -49,6 +46,7 @@ export default function DetailsPage() {
   return (
     <div>
       {productsMap}
+      <FooterHomePage/>
     </div>
   )
 }

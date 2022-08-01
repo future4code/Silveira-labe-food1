@@ -1,10 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import GlobalStateContext from "../../context/GlobalStateContext";
 import { useNavigate } from "react-router-dom";
-import { Button, Icon, IconButton, Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import {
-  ButtonContainer,
   InputsContainer,
   ScreenContainer,
   Line,
@@ -16,8 +15,9 @@ import {
 } from "./styled";
 import CardHistorico from "../../components/CardHistorico";
 import { goToEdit, goToEditAdress } from "../../router/coordinator";
+import Footer from './../../components/Footer';
 
-export default function ProfilePage() {
+export default function ProfilePage () {
   const { states, requests } = useContext(GlobalStateContext);
   const navigate = useNavigate()
 
@@ -85,6 +85,7 @@ export default function ProfilePage() {
             <h4>Você não realizou nenhum pedido</h4>
           ))}
       </HistoryContainer>
+    <Footer/>
     </ScreenContainer>
   );
-}
+};

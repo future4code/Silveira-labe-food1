@@ -10,6 +10,8 @@ import useProtectedPage from "../../hooks/useProtectedPage";
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 import Logout from "../../assets/iconelogout.png"
+import { Div } from "./styled";
+import FooterHomePage from '../../components/FooterHomePage';
 
 const IMG = styled.img`
 display: block;
@@ -55,8 +57,8 @@ margin: 10px;
 
 const EachRestaurant = styled.div`
   display: flex;
-  flex-direction: column;
-  row-gap: 15px;
+  flex-direction:column;
+  row-gap:15px;
 `
 
 const TextSearch = styled.p`
@@ -274,10 +276,13 @@ export default function HomePage() {
             <ButtonFilter onClick={filterPetiscos}>Petiscos</ButtonFilter>
             <ButtonFilter onClick={filterSorvetes}>Sorvetes</ButtonFilter>
           </DivButton>
-        
+
           {pedidoAtivo && <ActiveOrderComponent />}
           {mapAndFilterRestaurants.length === 0 ? <TextSearch>Não encontramos 🥺</TextSearch> : mapAndFilterRestaurants}</>
       }
+      <Div>
+        <FooterHomePage />
+      </Div>
     </div>
   )
 }
